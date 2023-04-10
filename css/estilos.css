@@ -1,0 +1,448 @@
+*{
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: "Jeju";
+    src: url(../fonts/Jeju.ttf);
+}
+
+body{
+    margin: 0%;
+    background-color: #1e1e1e;
+    font-family: 'Play', sans-serif;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* CSS PARA EL MENU */
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #131313;
+    border-bottom: 1px solid black;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    z-index: 999;
+    font-family: "Jeju";
+}
+
+.logo{
+    color: white;
+    text-decoration: none;
+    font-size: 3rem;
+    margin: 1.5rem;
+}
+
+header button{
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+#login{
+    margin: 1.5rem;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 1.5rem 8rem;
+}
+
+nav input{
+    font-family: "Play";
+    padding: 0.2rem;
+}
+
+/* CSS PARA EL HOME */
+#imgCabecera{
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    margin-top: 6rem;
+    border-bottom: 1px solid black;
+    display: block;
+}
+
+#bienvenida h1{
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+}
+
+#bienvenida{
+    display: flex;
+    flex-direction: column;
+    background-color: #131313;
+    border: 1px solid black;
+    margin: 1rem;
+}
+
+.div_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+}
+
+#bienvenida article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 50%;
+    padding: 3rem;
+}
+
+#bienvenida i{
+    font-size: 4rem;
+    color: yellow;
+}
+
+/* CSS PARA LA PÁGINA DE PARTIDO */
+#partido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin: 8.5rem 2.5rem 6rem 2.5rem;
+}
+
+#cabecera_partido{
+    display: flex;
+    height: 6rem;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+#nombre_equipos{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131313;
+    border: 1px solid black;
+    margin-right: 3rem;
+}
+
+#nombre_equipos>span{
+    font-size: 2.5rem;
+}
+
+#cabecera_partido img{
+    width: 30%;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+#contenedor_connect_chat{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+#partido button{
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: "Jeju";
+    font-size: 1rem;
+}
+
+#partido input{
+    padding: 0.5rem 1rem;
+    font-family: "Play";
+    font-size: 1rem;
+}
+
+#equipos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.partido_player{
+    background-color: #131313;
+    border: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    width: 35rem;
+}
+
+.partido_player img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-top: 1px solid black;
+    margin-right: 1rem;
+    border-radius: 100%;
+}
+
+.partido_player>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#equipos .lastplayer{
+    margin-bottom: 0;
+}
+
+#versus{
+    font-family: "Jeju";
+    font-size: 5rem;
+}
+
+/* CSS PARA LA PAGINA PERFIL DE JUGADOR */
+#perfil_jugador{
+    display: flex;
+    flex-direction: column;
+    background-color: #131313;
+    border: 1px solid black;
+    margin: 9.5rem auto 4rem auto;
+    padding: 2rem;
+    color: white;
+    width: 80%;
+}
+
+#perfil_jugador h2{
+    margin-top: 0;
+}
+
+#jugador{
+    display: flex;
+    width: 100%;
+}
+
+#jugador img{
+    border: 1px solid black;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin-right: 2rem;
+    border-radius: 100%;
+}
+
+#datos_jugador{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#estadisticas{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #1e1e1e;
+    padding: 0.3rem 1rem;
+    border: 1px solid black;
+}
+
+#rrss_jugador a{
+    margin-right: 2rem;
+    font-size: 2rem;
+    color: white;
+}
+
+#equipos_del_jugador{
+    margin: 0 auto;
+}
+
+#historial_jugador{
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    border: 1px solid black;
+}
+
+#historial_jugador table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#historial_jugador tr{
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#historial_jugador td{
+    padding: 1rem 0;
+}
+
+#historial_jugador th{
+    text-align: start;
+    color: #cfcfcf;
+}
+
+#historial_jugador tbody>tr:hover{
+    background-color: #272727;
+}
+
+.win{
+    color: green;
+}
+
+.lose{
+    color: red;
+}
+
+/* CSS PARA PAGINA CONTACTO */
+#formContacto{
+    background-color: #131313;
+    border: 1px solid black;
+    margin: 10rem auto 13rem auto;
+    padding: 3rem 4rem;
+    color: white;
+    width: fit-content;
+}
+
+#formContacto h2{
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+#formContacto form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formContacto form label{
+    margin-right: 1rem;
+}
+
+#formContacto form>div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#formContacto textarea{
+    resize: none;
+}
+
+#formContacto button{
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: "Jeju";
+    font-size: 1rem;
+}
+
+/* CSS PARA EL LEADERBOARD */
+#leaderboard{
+    display: flex;
+    flex-direction: column;
+    margin: 10rem auto 6rem auto;
+    width: 70%;
+}
+
+#leaderboard h1{
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+#seleccionTemporada{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+#seleccionTemporada a{
+    text-decoration: none;
+    color: #cfcfcf;
+    margin-right: 3rem;
+}
+
+#seleccionTemporada a:hover{
+    color: white;
+}
+
+#leaderboard table{
+    border-collapse: collapse;
+    color: white;
+}
+
+#leaderboard tr{
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#leaderboard td{
+    padding: 1rem;
+}
+
+#leaderboard th{
+    color: #cfcfcf;
+    background-color: #131313;
+    padding: 1rem;
+}
+
+#leaderboard tr>th:nth-child(1){
+    text-align: start;
+}
+#leaderboard tr>th:nth-child(2){
+    text-align: start;
+}
+
+#leaderboard tr>th:nth-child(6){
+    text-align: end;
+}
+#leaderboard tr>td:nth-child(6){
+    text-align: end;
+}
+
+#leaderboard tr>td:nth-child(3){
+    text-align: center;
+}
+#leaderboard tr>td:nth-child(4){
+    text-align: center;
+}
+#leaderboard tr>td:nth-child(5){
+    text-align: center;
+}
+
+#leaderboard tbody>tr:hover{
+    background-color: #272727;
+}
+
+/* CSS PARA EL FOOTER */
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #131313;
+    border-top: 1px solid black;
+    font-family: "Jeju";
+}
+
+footer a{
+    text-decoration: none;
+    color: white;
+    margin: 0rem 2rem;
+}
+
+footer i{
+    font-size: 1.5rem;
+}
+
+
