@@ -15,16 +15,12 @@
     <header>
         <a href="index.html" class="logo">KINGZ</a>
         <nav>
-            <!-- BOTON PARA BUSCAR PARTIDA MATCHMAKING -->
             <button id="play">PLAY</button>
             <a href="leaderboard.html">LEADERBOARD</a>
-            <!-- PARA BUSCAR OTROS USUARIOS O TORNEOS ETC -->
             <div>
                 <input placeholder="Search" id="buscador">
             </div>
         </nav>
-        <!-- BOTON PARA ABRIR LA VENTANA DE LOGIN -->
-        <!-- UNA VEZ LOGGEADO SE VERÍA TU FOTO DE PERFIL PARA HACER CLICK Y ABRIR UN PEQUEÑO MENU DESPLEGABLE -->
         <button data-testid="signup-header" id="login">Log in</button>
     </header>
     <main>

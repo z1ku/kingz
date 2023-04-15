@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,41 +15,46 @@
     <header>
         <a href="index.html" class="logo">KINGZ</a>
         <nav>
-            <!-- BOTON PARA BUSCAR PARTIDA MATCHMAKING -->
             <button id="play">PLAY</button>
             <a href="leaderboard.html">LEADERBOARD</a>
-            <!-- PARA BUSCAR OTROS USUARIOS O TORNEOS ETC -->
             <div>
                 <input placeholder="Search" id="buscador">
             </div>
         </nav>
-        <!-- BOTON PARA ABRIR LA VENTANA DE LOGIN -->
-        <!-- UNA VEZ LOGGEADO SE VERÍA TU FOTO DE PERFIL PARA HACER CLICK Y ABRIR UN PEQUEÑO MENU DESPLEGABLE -->
         <button data-testid="signup-header" id="login">Log in</button>
     </header>
     <main>
-        <section id="formContacto">
-            <!-- FORMULARIO DE CONTACTO -->
-            <form action="" method="post">
-                <h2>CONTACTO</h2>
-                <div>
-                    <label for="name">Nombre:</label>
-                    <input type="text" name="name">
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email">
-                </div>
-                <div>
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" name="asunto">
-                </div>
-                <div>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea name="mensaje"cols="30" rows="10" placeholder="..."></textarea>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
+        <!-- FOTO DE CABECERA WAPA TAL VEZ CON ALGUNAS NOTICIAS O EXPLICAR UN POCO QUE ES LA APLICACION -->
+        <img src="img/csgo.webp" alt="foto header" id="imgCabecera">
+        <!-- SECCION CON ALGUNAS FICHAS EXPLICANDO LO QUE PODRÍAS HACER EN EL SITIO WEB -->
+        <section id="bienvenida">
+            <h1>PLATAFORMA DE COMPETICIÓN EN LÍNEA</h1>
+            <div class="div_wrapper">
+                <article>
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <p>
+                        Compite en partidas clasificatorias para escalar en el ranking.
+                    </p>
+                </article>
+                <article>
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <p>
+                        Conoce tus estadísticas a medida que escalas posiciones.
+                    </p>
+                </article>
+                <article>
+                    <i class="fa-solid fa-user-clock"></i>
+                    <p>
+                        Emparejate con jugadores similares y compite por ser el mejor.
+                    </p>
+                </article>
+                <article>
+                    <i class="fa-solid fa-user-plus"></i>
+                    <p>
+                        Juega con amigos y conoce a otros nuevos.
+                    </p>
+                </article>
+            </div>
         </section>
     </main>
     <footer>
@@ -58,7 +63,6 @@
             <a href="#">Política de privacidad</a>
             <a href="#">Condiciones</a>
             <a href="contacto.html">Contacto</a>
-            <!-- REDES SOCIALES -->
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
             <a href="#"><i class="fa-brands fa-twitch"></i></a>
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
