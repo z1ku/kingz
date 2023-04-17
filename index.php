@@ -1,3 +1,13 @@
+<?php
+    require_once "php/funciones.php";
+
+    session_start();
+
+    if(isset($_COOKIE['sesion'])){
+        session_decode($_COOKIE['sesion']);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +22,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">KINGZ</a>
-        <nav>
-            <button id="play">PLAY</button>
-            <a href="leaderboard.html">LEADERBOARD</a>
-            <div>
-                <input placeholder="Search" id="buscador">
-            </div>
-        </nav>
-        <button data-testid="signup-header" id="login">Log in</button>
-    </header>
+    <?php
+        if(isset($_SESSION['nick']) && isset($_SESSION['pass'])){
+            $nick=$_SESSION['nick'];
+            $pass=$_SESSION['pass'];
+
+            $esAdmin=comprobarAdmin($nick,$pass);
+            
+            if($esAdmin){
+                headerIndexAdmin();
+            }else{
+                headerIndexPlayer();
+            }
+        }else{
+            headerIndexGuest();
+        }
+    ?>
     <main>
         <!-- FOTO DE CABECERA WAPA TAL VEZ CON ALGUNAS NOTICIAS O EXPLICAR UN POCO QUE ES LA APLICACION -->
         <img src="img/csgo.webp" alt="foto header" id="imgCabecera">
@@ -57,16 +72,8 @@
             </div>
         </section>
     </main>
-    <footer>
-        <a href="index.html" class="logo">KINGZ</a>
-        <div>
-            <a href="#">Política de privacidad</a>
-            <a href="#">Condiciones</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-twitch"></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-    </footer>
+    <?php
+        footerIndex();
+    ?>
 </body>
 </html>

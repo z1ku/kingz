@@ -11,10 +11,15 @@ body{
     margin: 0%;
     background-color: #1e1e1e;
     font-family: 'Play', sans-serif;
+    color: white;
 }
 
 img{
     max-width: 100%;
+}
+
+textarea{
+    resize: none;
 }
 
 /* CSS PARA EL MENU */
@@ -25,7 +30,7 @@ header{
     flex-wrap: wrap;
     background-color: #131313;
     border-bottom: 1px solid black;
-    position: fixed;
+    position: sticky;
     width: 100%;
     top: 0%;
     left: 0%;
@@ -40,21 +45,19 @@ header{
     margin: 1.5rem;
 }
 
-header button{
+header input[type=submit]{
     background-color: yellow;
     padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 1rem;
-}
-
-#login{
-    margin: 1.5rem;
+    margin: 0.5rem;
 }
 
 nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 nav a{
@@ -69,12 +72,15 @@ nav input{
     padding: 0.2rem;
 }
 
+.headerLogin{
+    display: flex;
+}
+
 /* CSS PARA EL HOME */
 #imgCabecera{
     height: 450px;
     width: 100%;
     object-fit: cover;
-    margin-top: 6rem;
     border-bottom: 1px solid black;
     display: block;
 }
@@ -112,6 +118,56 @@ nav input{
 #bienvenida i{
     font-size: 4rem;
     color: yellow;
+}
+
+/* CSS GENERAL PARA LAS SECCIONES */
+.seccion{
+    width: 80%;
+    margin: 4rem auto;
+    min-height: 90vh;
+}
+
+.seccion h1{
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.mensajeError{
+    text-align: center;
+}
+
+/* CSS PARA FORMS */
+.formkingz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #131313;
+    border: 1px solid black;
+    padding: 2rem;
+    color: white;
+    width: fit-content;
+    margin: auto;
+}
+
+.formkingz>div>label{
+    margin-right: 1rem;
+}
+
+.formkingz>div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.formkingz input[type=submit]{
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: "Jeju";
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
 /* CSS PARA LA PÁGINA DE PARTIDO */
@@ -300,49 +356,6 @@ nav input{
 
 .lose{
     color: red;
-}
-
-/* CSS PARA PAGINA CONTACTO */
-#formContacto{
-    background-color: #131313;
-    border: 1px solid black;
-    margin: 10rem auto 13rem auto;
-    padding: 3rem 4rem;
-    color: white;
-    width: fit-content;
-}
-
-#formContacto h2{
-    margin-top: 0;
-    margin-bottom: 2rem;
-}
-
-#formContacto form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#formContacto form label{
-    margin-right: 1rem;
-}
-
-#formContacto form>div{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-#formContacto textarea{
-    resize: none;
-}
-
-#formContacto button{
-    background-color: yellow;
-    padding: 0.5rem 1rem;
-    font-family: "Jeju";
-    font-size: 1rem;
 }
 
 /* CSS PARA EL LEADERBOARD */

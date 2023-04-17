@@ -24,7 +24,7 @@
         <button data-testid="signup-header" id="login">Log in</button>
     </header>
     <main>
-        <section id="formContacto">
+        <section class="formkingz">
             <!-- FORMULARIO DE CONTACTO -->
             <form action="" method="post">
                 <h2>CONTACTO</h2>
