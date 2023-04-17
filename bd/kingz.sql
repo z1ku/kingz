@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2023 a las 09:22:42
+-- Tiempo de generación: 17-04-2023 a las 19:22:22
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -113,14 +113,22 @@ CREATE TABLE `ticket` (
 CREATE TABLE `usuario` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nick` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `pass` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `correo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `foto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `mmr` int(5) UNSIGNED NOT NULL,
-  `estado` tinyint(1) UNSIGNED NOT NULL,
-  `en_partida` tinyint(1) UNSIGNED NOT NULL,
-  `buscando` tinyint(1) UNSIGNED NOT NULL
+  `pass` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `correo` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `foto` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `mmr` int(5) UNSIGNED DEFAULT NULL,
+  `estado` tinyint(1) UNSIGNED DEFAULT NULL,
+  `en_partida` tinyint(1) UNSIGNED DEFAULT NULL,
+  `buscando` tinyint(1) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
+(0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', NULL, NULL, 1100, 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -200,7 +208,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
