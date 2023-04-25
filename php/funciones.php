@@ -157,7 +157,7 @@
     function obtener_historial_partidas($id){
         $con = conectarServidor();
 
-        $consulta = "SELECT partida.*,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and id_usuario=$id";
+        $consulta = "SELECT partida.*,participa.equipo,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and partida.estado=1 and id_usuario=$id";
 
         $resultado = $con->query($consulta);
 
@@ -169,6 +169,15 @@
                 $datos[$i]['resultado_b'] = $fila['resultado_b'];
                 $datos[$i]['fecha'] = $fila['fecha'];
                 $datos[$i]['mapa'] = $fila['nommap'];
+
+                if($fila['equipo'] == 'A' && $fila['resultado_a'] > $fila['resultado_b']) {
+                    $datos[$i]['ganado'] = true;
+                }else if($fila['equipo'] == 'B' && $fila['resultado_b'] > $fila['resultado_a']) {
+                    $datos[$i]['ganado'] = true;
+                }else{
+                    $datos[$i]['ganado'] = false;
+                }
+
                 $i++;
             }
         } else {
