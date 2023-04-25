@@ -47,13 +47,15 @@
         <section id="perfil_jugador">
             <?php
                 if(isset($_POST['buscar_jugador'])){
-
+                    //SI ACCEDEN AL PERFIL BUSCANDO DESDE LA BARRA, TENGO QUE SACAR LA ID DEL NICK QUE HAN BUSCADO Y SACAR DATOS_JUGADOR DEL BLOQUE
                 }else{
                     if($tipo_usu=="admin"){
                         header("Location:../index.php");
                     }
 
                     $id=id_jugador_por_nick($nick);
+
+                    //SACAR ESTO DEL BLOQUE PROXIMAMENTE
                     $datos_jugador=jugador_por_id($id);
                 }
             ?>
