@@ -37,7 +37,7 @@
                     $nick=$_POST['nick'];
                     $pass=md5(md5($_POST['pass']));
 
-                    $buscar=$con->prepare("select id from usuario where nick=? and pass=?");
+                    $buscar=$con->prepare("SELECT id from usuario where nick=? and pass=? and estado=1");
                     $buscar->bind_result($id);
                     $buscar->bind_param("ss",$nick,$pass);
                     $buscar->execute();

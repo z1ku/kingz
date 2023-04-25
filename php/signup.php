@@ -41,6 +41,8 @@
                         $mensaje="La contraseña no puede ser superior a 20 caracteres";
                     }else if(!ctype_alnum($_POST['nick'])){
                         $mensaje="El nick solo puede contener caracteres alfanuméricos";
+                    }else if($_POST['pass']!=$_POST['passrepe']){
+                        $mensaje="Las constraseñas no coinciden";
                     }else{
 
                         $con=conectarServidor();
@@ -48,7 +50,7 @@
                         $nick=$_POST['nick'];
                         $pass=md5(md5($_POST['pass']));
 
-                        $buscar=$con->prepare("select count(id) from usuario where nick=?");
+                        $buscar=$con->prepare("SELECT count(id) from usuario where nick=?");
                         $buscar->bind_param("s", $nick);
                         $buscar->execute();
                         $buscar->bind_result($num);
@@ -59,7 +61,7 @@
                         if($num>0){
                             $mensaje="Ese nick ya esta en uso";
                         }else{
-                            $insertar=$con->prepare("insert into usuario values(null,?,?,null,null,1100,1,0,0)");
+                            $insertar=$con->prepare("INSERT into usuario values(null,?,?,null,null,1100,1,0,0)");
                             $insertar->bind_param("ss", $nick,$pass);
 
                             if($insertar->execute()){
@@ -89,6 +91,10 @@
                 <div>
                     <label for="pass">Constraseña:</label>
                     <input type="password" name="pass" required>
+                </div>
+                <div>
+                    <label for="passrepe">Repetir constraseña:</label>
+                    <input type="password" name="passrepe" required>
                 </div>
                 <input type="submit" name="registrarse" value="Enviar">
                 </form>';

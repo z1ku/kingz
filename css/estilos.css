@@ -279,8 +279,22 @@ nav input{
     width: 80%;
 }
 
+#cabecera_perfil_jugador{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #perfil_jugador h2{
-    margin-top: 0;
+    margin: 1rem 0;
+}
+
+#editar_perfil{
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: "Jeju";
+    font-size: 1rem;
+    margin: 1rem 0;
 }
 
 #jugador{
@@ -309,16 +323,6 @@ nav input{
     background-color: #1e1e1e;
     padding: 0.3rem 1rem;
     border: 1px solid black;
-}
-
-#rrss_jugador a{
-    margin-right: 2rem;
-    font-size: 2rem;
-    color: white;
-}
-
-#equipos_del_jugador{
-    margin: 0 auto;
 }
 
 #historial_jugador{
