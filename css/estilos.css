@@ -273,10 +273,8 @@ nav input{
     flex-direction: column;
     background-color: #131313;
     border: 1px solid black;
-    margin: 9.5rem auto 4rem auto;
     padding: 2rem;
     color: white;
-    width: 80%;
 }
 
 #cabecera_perfil_jugador{

@@ -111,7 +111,7 @@
                     (select count(*) from usuario where id <> 0 and (mmr > u.mmr or (mmr = u.mmr and id <= u.id))) as posicion 
                     from usuario u 
                     where id <> 0 and estado=1
-                    order by mmr desc, id asc";
+                    order by mmr desc, id desc";
 
         $buscar=$con->query($consulta);
 
@@ -157,7 +157,7 @@
     function obtener_historial_partidas($id){
         $con = conectarServidor();
 
-        $consulta = "SELECT partida.*,participa.equipo,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and partida.estado=1 and id_usuario=$id";
+        $consulta = "SELECT partida.*,participa.equipo,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and partida.estado=1 and id_usuario=$id order by fecha desc limit 10";
 
         $resultado = $con->query($consulta);
 

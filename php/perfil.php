@@ -44,7 +44,7 @@
         }
     ?>
     <main>
-        <section id="perfil_jugador">
+        <section id="perfil_jugador" class="seccion">
             <?php
                 if(isset($_POST['buscar_jugador'])){
                     //SI ACCEDEN AL PERFIL BUSCANDO DESDE LA BARRA, TENGO QUE SACAR LA ID DEL NICK QUE HAN BUSCADO Y SACAR DATOS_JUGADOR DEL BLOQUE
@@ -61,7 +61,11 @@
             ?>
             <div id="jugador">
                 <?php
-                    echo "<img src=\"../img/jugador/$datos_jugador[foto]\">";
+                    if($datos_jugador['foto']!=null){
+                        echo "<img src=\"../img/jugador/$datos_jugador[foto]\">";
+                    }else{
+                        echo "<img src=\"../img/jugador/jugador.png\">";
+                    }
                 ?>
                 <div id="datos_jugador">
                     <div id="cabecera_perfil_jugador">
