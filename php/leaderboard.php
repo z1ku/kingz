@@ -70,7 +70,7 @@
     
                                 echo '<tr>
                                     <td>'.$rank.'</td>
-                                    <td>'.$jugadores[$i]['nick'].'</td>
+                                    <td><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></td>
                                     <td>'.$partidas_totales.'</td>
                                     <td>'.$partidas_ganadas.'</td>
                                     <td>'.$win_rate.'</td>

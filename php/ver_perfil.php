@@ -41,17 +41,18 @@
         }else{
             headerGuest();
             $tipo_usu="guest";
+            $nick="";
         }
     ?>
     <main>
         <section id="perfil_jugador" class="seccion">
             <?php
-                if($tipo_usu!="player"){
+                $id=$_GET['id_player'];
+                $datos_jugador=jugador_por_id($id);
+
+                if($datos_jugador==null){
                     header("Location:../index.php");
                 }
-
-                $id=id_jugador_por_nick($nick);
-                $datos_jugador=jugador_por_id($id);
             ?>
             <div id="jugador">
                 <?php
