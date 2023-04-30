@@ -364,8 +364,6 @@ nav input{
 #leaderboard{
     display: flex;
     flex-direction: column;
-    margin: 10rem auto 6rem auto;
-    width: 70%;
 }
 
 #leaderboard h1{
@@ -373,23 +371,6 @@ nav input{
     text-align: center;
     font-size: 2rem;
     margin-top: 0;
-}
-
-#seleccionTemporada{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 2rem 0;
-}
-
-#seleccionTemporada a{
-    text-decoration: none;
-    color: #cfcfcf;
-    margin-right: 3rem;
-}
-
-#seleccionTemporada a:hover{
-    color: white;
 }
 
 #leaderboard table{

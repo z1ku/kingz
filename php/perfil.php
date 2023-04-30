@@ -94,7 +94,7 @@
                                     $win_rate=($partidas_ganadas/$partidas_totales) * 100;
 
                                     echo "<p>Partidas jugadas: $partidas_totales</p>";
-                                    echo "<p>W/L Rate: $win_rate</p>";
+                                    echo "<p>W/L Rate: $win_rate%</p>";
                                 }else{
                                     echo "<p>Partidas jugadas: 0</p>";
                                     echo "<p>W/L Rate: -</p>";
@@ -137,12 +137,6 @@
                                 }
                             }
                         ?>
-                        <tr>
-                            <td>23/10/2022</td>
-                            <td>16/10</td>
-                            <td class="win">WIN</td>
-                            <td>Cache</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
