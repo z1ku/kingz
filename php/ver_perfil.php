@@ -47,6 +47,10 @@
     <main>
         <section id="perfil_jugador" class="seccion">
             <?php
+                if(!isset($_GET['id_player'])){
+                    header("Location:../index.php");
+                }
+
                 $id=$_GET['id_player'];
                 $datos_jugador=jugador_por_id($id);
 

@@ -35,14 +35,21 @@
 
     //FUNCION PARA OBTENER ID DE UN JUGADOR POR SU NICK
     function id_jugador_por_nick($nick){
-        $con=conectarServidor();
-
-        $sentencia="SELECT id from usuario where nick='$nick'";
-        $resultado=$con->query($sentencia);
-
-        $fila=$resultado->fetch_array(MYSQLI_NUM);
-        $id=$fila[0];
-
+        $con = conectarServidor();
+    
+        $sentencia = "SELECT id from usuario where nick=?";
+        $buscar = $con->prepare($sentencia);
+        $buscar->bind_param("s", $nick);
+        $buscar->execute();
+        $buscar->store_result();
+    
+        if ($buscar->num_rows > 0) {
+            $buscar->bind_result($id);
+            $buscar->fetch();
+        } else {
+            $id = null;
+        }
+    
         $con->close();
         return $id;
     }
@@ -199,8 +206,8 @@
                     <input type="submit" id="btn-play" name="play" value="PLAY">
                 </form>
                 <a href="php/leaderboard.php">LEADERBOARD</a>
-                <form action="php/buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="php/buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
@@ -223,8 +230,8 @@
                     <input type="submit" id="btn-admin" name="admin" value="Panel Admin">
                 </form>
                 <a href="php/leaderboard.php">LEADERBOARD</a>
-                <form action="php/buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="php/buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
@@ -244,8 +251,8 @@
                     <input type="submit" id="btn-play" name="play" value="PLAY">
                 </form>
                 <a href="php/leaderboard.php">LEADERBOARD</a>
-                <form action="php/buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="php/buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
@@ -268,8 +275,8 @@
                     <input type="submit" id="btn-play" name="play" value="PLAY">
                 </form>
                 <a href="leaderboard.php">LEADERBOARD</a>
-                <form action="buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
@@ -292,8 +299,8 @@
                     <input type="submit" id="btn-admin" name="admin" value="Panel Admin">
                 </form>
                 <a href="leaderboard.php">LEADERBOARD</a>
-                <form action="buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
@@ -313,8 +320,8 @@
                     <input type="submit" id="btn-play" name="play" value="PLAY">
                 </form>
                 <a href="leaderboard.php">LEADERBOARD</a>
-                <form action="buscadorheader.php" method="post">
-                    <input placeholder="Search" id="buscadorheader" name="buscador">
+                <form action="buscar_perfil.php" method="post">
+                    <input placeholder="Search player" id="buscar_perfil" name="buscador">
                 </form>
             </nav>
             <div class="headerLogin">
