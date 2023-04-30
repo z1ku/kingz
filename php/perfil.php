@@ -106,6 +106,9 @@
             </div>
             <!-- HISTORIAL DE LAS ULTIMAS PARTIDAS DEL JUGADOR -->
             <div id="historial_jugador">
+                <?php
+                    $historial=obtener_historial_partidas($id);
+                ?>
                 <h2>HISTORIAL DE PARTIDAS</h2>
                 <table>
                     <thead>
@@ -113,16 +116,31 @@
                             <th>Fecha</th>
                             <th>Score</th>
                             <th>Result</th>
-                            <th>MMR</th>
                             <th>Mapa</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            if($historial!=null){
+                                for($i=0;$i<count($historial);$i++){
+                                    $fecha=date("d-m-Y",strtotime($historial[$i]['fecha']));
+                                    echo '<tr>
+                                    <td>'.$fecha.'</td>
+                                    <td>'.$historial[$i]['resultado_a'].'/'.$historial[$i]['resultado_b'].'</td>';
+                                    if($historial[$i]['ganado']==true){
+                                        echo '<td class="win">WIN</td>';
+                                    }else{
+                                        echo '<td class="lose">LOSE</td>';
+                                    }   
+                                    echo '<td>'.$historial[$i]['mapa'].'</td>
+                                    </tr>';
+                                }
+                            }
+                        ?>
                         <tr>
                             <td>23/10/2022</td>
                             <td>16/10</td>
                             <td class="win">WIN</td>
-                            <td class="win">+24</td>
                             <td>Cache</td>
                         </tr>
                     </tbody>
