@@ -67,22 +67,38 @@
                     $consulta="SELECT * from usuario where buscando=1 LIMIT 4";
                     $jugadores=$con->query($consulta);
                     
-                    // Si se encontraron 4 jugadores, crear la partida
-                    if ($jugadores->num_rows==4){
+                    // Si se encontraron 2 jugadores, crear la partida
+                    if ($jugadores->num_rows==2){
+                        //FECHA DE HOY
+                        $fecha=date('Y-m-d');
+
                         // Crear la partida
-                        $consulta = "INSERT into partida values ()";
+                        $consulta = "INSERT into partida values (?,0,0,$fecha,0,null)";
                         $con->query($consulta);
+
+                        // Obtener el ID de la partida creada
+                        $id_partida=mysqli_insert_id($con);
 
                         $i=0;
                         while($fila_jugador=$jugadores->fetch_array(MYSQLI_ASSOC)){
-                            //Guardar las id de los 4 jugadores y actualizar sus estados
+                            //Guardar las id de cada jugador
                             $id_jugadores[$i]['id']=$fila_jugador['id'];
-                            $actualizar_estados=$con->query("UPDATE usuario set buscando=0 and en_partida=1 where id=$fila_jugador['id']");
+
+                            //Actualizar sus estados
+                            $actualizar_estados=$con->query("UPDATE usuario set buscando=0, en_partida=1 where id=$fila_jugador['id']");
+
+                            //Crear indice en tabla participa para cada jugador, par o impar para asignar equipos
+                            if($i%2==0){
+                                $participa=$con->query("INSERT into participa values ($fila_jugador['id'],$id_partida,'A')");
+                            }else{
+                                $participa=$con->query("INSERT into participa values ($fila_jugador['id'],$id_partida,'B')");
+                            }
+
                             $i++;
                         }
                         
                         // Redireccionar a los jugadores al lobby de la partida
-                        header("Location: sala_partido.php?id_partida=");
+                        header("Location:match.php?id_partida=$id_partida");
                         exit();
                     }
                     
