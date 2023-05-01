@@ -162,37 +162,85 @@
 
     //FUNCION PARA OBTENER HISTORIAL DE PARTIDAS DE UN JUGADOR
     function obtener_historial_partidas($id){
-        $con = conectarServidor();
+        $con=conectarServidor();
 
-        $consulta = "SELECT partida.*,participa.equipo,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and partida.estado=1 and id_usuario=$id order by fecha desc limit 10";
+        $consulta="SELECT partida.*,participa.equipo,mapa.nombre nommap from partida,participa,mapa where id_mapa=mapa.id and id_partida=partida.id and partida.estado=1 and id_usuario=$id order by fecha desc limit 10";
 
-        $resultado = $con->query($consulta);
+        $resultado=$con->query($consulta);
 
-        if ($resultado->num_rows > 0) {
-            $i = 0;
-            while ($fila = $resultado->fetch_array(MYSQLI_ASSOC)) {
-                $datos[$i]['id'] = $fila['id'];
-                $datos[$i]['resultado_a'] = $fila['resultado_a'];
-                $datos[$i]['resultado_b'] = $fila['resultado_b'];
-                $datos[$i]['fecha'] = $fila['fecha'];
-                $datos[$i]['mapa'] = $fila['nommap'];
+        if($resultado->num_rows>0){
+            $i=0;
+            while($fila=$resultado->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila['id'];
+                $datos[$i]['resultado_a']=$fila['resultado_a'];
+                $datos[$i]['resultado_b']=$fila['resultado_b'];
+                $datos[$i]['fecha']=$fila['fecha'];
+                $datos[$i]['mapa']=$fila['nommap'];
 
-                if($fila['equipo'] == 'A' && $fila['resultado_a'] > $fila['resultado_b']) {
+                if($fila['equipo']=='A' && $fila['resultado_a']>$fila['resultado_b']) {
                     $datos[$i]['ganado'] = true;
-                }else if($fila['equipo'] == 'B' && $fila['resultado_b'] > $fila['resultado_a']) {
-                    $datos[$i]['ganado'] = true;
+                }else if($fila['equipo']=='B' && $fila['resultado_b']>$fila['resultado_a']) {
+                    $datos[$i]['ganado']=true;
                 }else{
-                    $datos[$i]['ganado'] = false;
+                    $datos[$i]['ganado']=false;
                 }
 
                 $i++;
             }
-        } else {
-            $datos = null;
+        }else{
+            $datos=null;
         }
 
         $con->close();
         return $datos;
+    }
+
+    // FUNCIONES RELACIONADAS CON EL PARTIDO
+    ////////////////////////////////////////////////////////////////////
+    //FUNCION PARA OBTENER UN PARTIDO POR SU ID
+    function partido_por_id($id){
+        $con = conectarServidor();
+
+        $buscar=$con->query("SELECT * from partida where id=$id");
+
+        if($buscar->num_rows>0){
+            $fila=$buscar->fetch_array(MYSQLI_ASSOC);
+            $datos['id']=$fila['id'];
+            $datos['resultado_a']=$fila['resultado_a'];
+            $datos['resultado_b']=$fila['resultado_b'];
+            $datos['fecha']=$fila['fecha'];
+            $datos['estado']=$fila['estado'];
+            $datos['id_mapa']=$fila['id_mapa'];
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    //FUNCION PARA OBTENER JUGADORES DE UN PARTIDO POR SU ID
+    function obtener_jugadores_partida($id_partida){
+        $con = conectarServidor();
+    
+        $buscar=$con->query("SELECT usuario.id,usuario.nick,participa.equipo,usuario.mmr from usuario,participa where usuario.id=participa.id_usuario and participa.id_partida=$id_partida");
+    
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $jugadores[$i]['id']=$fila['id'];
+                $jugadores[$i]['nick']=$fila['nick'];
+                $jugadores[$i]['equipo']=$fila['equipo'];
+                $jugadores[$i]['mmr']=$fila['mmr'];
+
+                $i++;
+            }
+        }else{
+            $jugadores=null;
+        }
+
+        $con->close();
+        return $jugadores;
     }
 
     // FUNCIONES PARA HEADER

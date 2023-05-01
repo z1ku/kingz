@@ -44,26 +44,42 @@
         }
     ?>
     <main>
-        <section id="partido">
+        <section id="partido" class="seccion">
+            <?php
+                if(!isset($_GET['id_partida'])){
+                    header("Location:../index.php");
+                }
+
+                $id_partida=$_GET['id_partida'];
+
+                $datos_partida=partido_por_id($id_partida);
+
+                if($datos_partida==null){
+                    header("Location:../index.php");
+                }
+
+                $jugadores=obtener_jugadores_partida($id_partida);
+            ?>
             <div id="cabecera_partido">
-                <!-- NOMBRE DEL EQUIPO A Y EQUIPO B -->
                 <div id="nombre_equipos">
                     <span>TEAM A VS TEAM B</span>
                 </div>
-                <!-- IMAGEN DEL MAPA A JUGAR -->
-                <img src="img/cache.jpg" alt="mapa de el mapa cache" id="foto_mapa">
+                <?php
+                    if($datos_partida['id_mapa']!=null) {
+                        $con = conectarServidor();
+                    
+                        $buscar_foto=$con->query("SELECT foto from mapa where id=$datos_partida[id_mapa]");
+                        $fila=$buscar_foto->fetch_array(MYSQLI_ASSOC);
+                    
+                        echo '<img src="../img/mapa/'.$fila['foto'].'" alt="" id="foto_mapa">';
+                    
+                        $con->close();
+                    }
+                ?>
             </div>
-            <div id="contenedor_connect_chat">
-                <!-- PARA COPIAR LA DIRECCION DEL SERVIDOR DONDE SE JUEGA EL PARTIDO -->
-                <div>
-                    <input placeholder="connect ip;">
-                    <button>COPY</button>
-                </div>
-                <!-- BOTON PARA ABRIR UN CHAT EMERGENTE PARA HABLAR CON EL RESTO DE JUGADORES DEL LOBBY -->
-                <button>CHAT<i></i></button>
+            <div id="chat_partido">
+                    
             </div>
-            <!-- JUGADORES DEL EQUIPO A -->
-            <!-- CON SU NOMBRE Y FOTO DE PERFIL -->
             <div id="equipos">
                 <div id="equipoA">
                     <div class="partido_player">
@@ -102,12 +118,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- IMAGEN PARA SEPARAR UN EQUIPO DEL OTRO CON UN "VS" -->
                 <div>
                     <span id="versus">VS</span>
                 </div>
-                <!-- JUGADORES DEL EQUIPO A -->
-                <!-- CON SU NOMBRE Y FOTO DE PERFIL -->
                 <div id="equipoA">
                     <div class="partido_player">
                         <img src="img/eldoggo.jpg" alt="foto perfil jugador">
