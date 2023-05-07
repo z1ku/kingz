@@ -17,8 +17,17 @@
         //FECHA DE HOY
         $fecha=date('Y-m-d');
 
+        //GENERAR ID_MAPA ALEATORIO
+        $consulta="SELECT count(id) from mapa";
+        $resultado=$con->query($consulta);
+
+        $fila=$resultado->fetch_array(MYSQLI_NUM);
+        $num=$fila[0];
+
+        $id_mapa_aleatorio=rand(1, $num);
+
         // Crear la partida
-        $consulta = "INSERT into partida values (null,null,null,'$fecha',0,null)";
+        $consulta = "INSERT into partida values (null,null,null,'$fecha',0,$id_mapa_aleatorio)";
         $con->query($consulta);
 
         // Obtener el ID de la partida creada
