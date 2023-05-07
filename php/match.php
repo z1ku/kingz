@@ -77,86 +77,56 @@
                     }
                 ?>
             </div>
-            <div id="chat_partido">
-                    
-            </div>
             <div id="equipos">
                 <div id="equipoA">
-                    <div class="partido_player">
-                        <img src="img/capibara.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>Zaraki</span>
-                            <span>MMR: 2709</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/vizcacha.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>Xaxy</span>
-                            <span>MMR: 1520</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/eldoggo.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>z1ku</span>
-                            <span>MMR: 3005</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/gatosandia.jfif" alt="foto perfil jugador">
-                        <div>
-                            <span>Deeky</span>
-                            <span>MMR: 1556</span>
-                        </div>
-                    </div>
-                    <div class="partido_player lastplayer">
-                        <img src="img/oscar.webp" alt="foto perfil jugador">
-                        <div>
-                            <span>Gravis</span>
-                            <span>MMR: 1443</span>
-                        </div>
-                    </div>
+                    <?php
+                        for($i=0;$i<count($jugadores);$i++){
+                            if($jugadores[$i]["equipo"]=='A'){
+
+                                if($jugadores[$i]["foto"]!=null){
+                                    $foto_jugador=$jugadores[$i]['foto'];
+                                }else{
+                                    $foto_jugador="jugador.png";
+                                }
+
+                                echo '<div class="partido_player">
+                                <img src="../img/jugador/'.$foto_jugador.'" alt="">
+                                <div>
+                                    <span>'.$jugadores[$i]["nick"].'</span>
+                                    <span>MMR: '.$jugadores[$i]["mmr"].'</span>
+                                </div>
+                                </div>';
+                            }
+                        }
+                    ?>
                 </div>
                 <div>
                     <span id="versus">VS</span>
                 </div>
-                <div id="equipoA">
-                    <div class="partido_player">
-                        <img src="img/eldoggo.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>eGo</span>
-                            <span>MMR: 2899</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/oscar.webp" alt="foto perfil jugador">
-                        <div>
-                            <span>Bettis</span>
-                            <span>MMR: 1325</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/gatosandia.jfif" alt="foto perfil jugador">
-                        <div>
-                            <span>Phakun</span>
-                            <span>MMR: 1255</span>
-                        </div>
-                    </div>
-                    <div class="partido_player">
-                        <img src="img/capibara.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>Cloud</span>
-                            <span>MMR: 3027</span>
-                        </div>
-                    </div>
-                    <div class="partido_player lastplayer">
-                        <img src="img/vizcacha.jpg" alt="foto perfil jugador">
-                        <div>
-                            <span>Lotis</span>
-                            <span>MMR: 2956</span>
-                        </div>
-                    </div>
+                <div id="equipoB">
+                    <?php
+                        for($i=0;$i<count($jugadores);$i++){
+                            if($jugadores[$i]["equipo"]=='B'){
+
+                                if($jugadores[$i]["foto"]!=null){
+                                    $foto_jugador=$jugadores[$i]['foto'];
+                                }else{
+                                    $foto_jugador="jugador.png";
+                                }
+
+                                echo '<div class="partido_player">
+                                <img src="../img/jugador/'.$foto_jugador.'" alt="">
+                                <div>
+                                    <span>'.$jugadores[$i]["nick"].'</span>
+                                    <span>MMR: '.$jugadores[$i]["mmr"].'</span>
+                                </div>
+                                </div>';
+                            }
+                        }
+                    ?>
+                </div>
+                <div id="chat_partido">
+                
                 </div>
             </div>
         </section>

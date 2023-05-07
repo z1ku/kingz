@@ -241,13 +241,14 @@
     function obtener_jugadores_partida($id_partida){
         $con = conectarServidor();
     
-        $buscar=$con->query("SELECT usuario.id,usuario.nick,participa.equipo,usuario.mmr from usuario,participa where usuario.id=participa.id_usuario and participa.id_partida=$id_partida");
+        $buscar=$con->query("SELECT usuario.id,usuario.nick,usuario.foto,participa.equipo,usuario.mmr from usuario,participa where usuario.id=participa.id_usuario and participa.id_partida=$id_partida");
     
         if($buscar->num_rows>0){
             $i=0;
             while($fila=$buscar->fetch_array(MYSQLI_ASSOC)){
                 $jugadores[$i]['id']=$fila['id'];
                 $jugadores[$i]['nick']=$fila['nick'];
+                $jugadores[$i]['foto']=$fila['foto'];
                 $jugadores[$i]['equipo']=$fila['equipo'];
                 $jugadores[$i]['mmr']=$fila['mmr'];
 
