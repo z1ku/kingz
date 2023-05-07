@@ -66,7 +66,13 @@
                                 $rank=obtener_rank_jugador($jugadores[$i]['id']);
                                 $partidas_totales=partidas_totales($jugadores[$i]['id']);
                                 $partidas_ganadas=partidas_ganadas($jugadores[$i]['id']);
-                                $win_rate=($partidas_ganadas/$partidas_totales) * 100;
+
+                                if($partidas_totales>0){
+                                    $win_rate=($partidas_ganadas/$partidas_totales) * 100;
+                                }else{
+                                    $win_rate=0;
+                                }
+                                
                                 $win_truncado = intval($win_rate);
     
                                 echo '<tr>

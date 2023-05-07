@@ -83,7 +83,7 @@
     function partidas_totales($id){
         $con=conectarServidor();
 
-        $sentencia="SELECT count(*) from participa where id_usuario=$id";
+        $sentencia="SELECT count(*) from participa,partida where id_partida=id and id_usuario=$id and partida.estado=1";
         $resultado=$con->query($sentencia);
 
         $fila=$resultado->fetch_array(MYSQLI_NUM);
@@ -97,7 +97,7 @@
     function partidas_ganadas($id){
         $con=conectarServidor();
 
-        $sentencia="SELECT count(id_usuario) from participa,partida where id_partida=id and id_usuario=$id and (
+        $sentencia="SELECT count(id_usuario) from participa,partida where id_partida=id and id_usuario=$id and partida.estado=1 and (
             (participa.equipo = 'A' and partida.resultado_a > partida.resultado_b) or (participa.equipo = 'B' and partida.resultado_b > partida.resultado_a)
         )";
 
@@ -118,7 +118,7 @@
                     (select count(*) from usuario where id <> 0 and (mmr > u.mmr or (mmr = u.mmr and id <= u.id))) as posicion 
                     from usuario u 
                     where id <> 0 and estado=1
-                    order by mmr desc, id desc";
+                    order by mmr desc, id asc";
 
         $buscar=$con->query($consulta);
 
