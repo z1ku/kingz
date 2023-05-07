@@ -67,13 +67,14 @@
                                 $partidas_totales=partidas_totales($jugadores[$i]['id']);
                                 $partidas_ganadas=partidas_ganadas($jugadores[$i]['id']);
                                 $win_rate=($partidas_ganadas/$partidas_totales) * 100;
+                                $win_truncado = intval($win_rate);
     
                                 echo '<tr>
                                     <td>'.$rank.'</td>
                                     <td><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></td>
                                     <td>'.$partidas_totales.'</td>
                                     <td>'.$partidas_ganadas.'</td>
-                                    <td>'.$win_rate.'</td>
+                                    <td>'.$win_truncado.'%</td>
                                     <td>'.$jugadores[$i]['mmr'].'</td>
                                 </tr>';
                             }

@@ -88,9 +88,10 @@
                                     $partidas_ganadas=partidas_ganadas($id);
 
                                     $win_rate=($partidas_ganadas/$partidas_totales) * 100;
+                                    $win_truncado = intval($win_rate);
 
                                     echo "<p>Partidas jugadas: $partidas_totales</p>";
-                                    echo "<p>W/L Rate: $win_rate%</p>";
+                                    echo "<p>W/L Rate: $win_truncado%</p>";
                                 }else{
                                     echo "<p>Partidas jugadas: 0</p>";
                                     echo "<p>W/L Rate: -</p>";

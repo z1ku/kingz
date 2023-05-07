@@ -219,6 +219,24 @@
         return $datos;
     }
 
+    function obtener_partida_abierta($id){
+        $con = conectarServidor();
+    
+        $sentencia = "SELECT id_partida from participa,partida where participa.id_partida=partida.id and participa.id_usuario=$id and partida.estado=0 and partida.resultado_a is null and partida.resultado_b is null";
+        
+        $resultado = $con->query($sentencia);
+    
+        if($resultado->num_rows > 0){
+            $fila = $resultado->fetch_array(MYSQLI_NUM);
+            $id_partida = $fila[0];
+        } else {
+            $id_partida = null;
+        }
+    
+        $con->close();
+        return $id_partida;
+    }
+
     //FUNCION PARA OBTENER JUGADORES DE UN PARTIDO POR SU ID
     function obtener_jugadores_partida($id_partida){
         $con = conectarServidor();
