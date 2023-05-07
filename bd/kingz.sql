@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2023 a las 17:44:02
+-- Tiempo de generación: 07-05-2023 a las 22:55:22
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -95,7 +95,11 @@ CREATE TABLE `participa` (
 
 INSERT INTO `participa` (`id_usuario`, `id_partida`, `equipo`) VALUES
 (1, 1, 'A'),
-(1, 2, 'A');
+(1, 2, 'A'),
+(1, 3, 'A'),
+(1, 4, 'A'),
+(2, 3, 'B'),
+(2, 4, 'B');
 
 -- --------------------------------------------------------
 
@@ -105,11 +109,11 @@ INSERT INTO `participa` (`id_usuario`, `id_partida`, `equipo`) VALUES
 
 CREATE TABLE `partida` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `resultado_a` int(2) UNSIGNED NOT NULL,
-  `resultado_b` int(2) UNSIGNED NOT NULL,
+  `resultado_a` int(2) UNSIGNED DEFAULT NULL,
+  `resultado_b` int(2) UNSIGNED DEFAULT NULL,
   `fecha` date NOT NULL,
   `estado` tinyint(1) UNSIGNED NOT NULL,
-  `id_mapa` bigint(20) UNSIGNED NOT NULL
+  `id_mapa` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -118,7 +122,9 @@ CREATE TABLE `partida` (
 
 INSERT INTO `partida` (`id`, `resultado_a`, `resultado_b`, `fecha`, `estado`, `id_mapa`) VALUES
 (1, 13, 9, '2023-04-30', 1, 1),
-(2, 10, 13, '2023-04-29', 1, 8);
+(2, 10, 13, '2023-04-29', 1, 8),
+(3, 13, 8, '2023-05-07', 1, 4),
+(4, NULL, NULL, '2023-05-07', 0, 7);
 
 -- --------------------------------------------------------
 
@@ -159,7 +165,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
 (0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, 1, NULL, NULL),
-(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 1100, 1, 0, 1);
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3000, 1, 1, 0),
+(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1100, 1, 1, 0),
+(3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -232,7 +240,7 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ticket`
@@ -244,7 +252,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
