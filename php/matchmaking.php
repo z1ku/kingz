@@ -8,12 +8,14 @@
 
     $con=conectarServidor();
 
-    // Obtener jugadores que estén buscando partida
-    $consulta="SELECT * from usuario where buscando=1 LIMIT 2";
+    $LIMITE_JUGADORES=2;
+
+    // Obtener X jugadores que estén buscando partida
+    $consulta="SELECT * from usuario where buscando=1 LIMIT $LIMITE_JUGADORES";
     $jugadores=$con->query($consulta);
     
-    // Si se encontraron 2 jugadores, crear la partida
-    if($jugadores->num_rows==2){
+    // Si se encontraron X jugadores, crear la partida
+    if($jugadores->num_rows==$LIMITE_JUGADORES){
         //FECHA DE HOY
         $fecha=date('Y-m-d');
 

@@ -262,6 +262,27 @@
         return $jugadores;
     }
 
+    //FUNCION PARA OBTENER TODOS LOS MENSAJES DE UN PARTIDO POR ID
+    function todos_mensajes_partida($id_partida){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT mensaje.texto,mensaje.marca,usuario.nick from mensaje,usuario where usuario.id=id_usuario and id_partida=$id_partida order by marca asc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['nick']=$fila_buscar['nick'];
+                $datos[$i]['texto']=$fila_buscar['texto'];
+                $datos[$i]['marca']=$fila_buscar['marca'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO

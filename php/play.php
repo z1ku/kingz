@@ -53,22 +53,24 @@
                 <progress max="100">Buscando partida</progress>
             </div>
             <?php
-                //SACO LA INFORMACION DEL JUGADOR
-                $id=id_jugador_por_nick($nick);
-                $jugador=jugador_por_id($id);
+                if($tipo_usu=="player"){
+                    //SACO LA INFORMACION DEL JUGADOR
+                    $id=id_jugador_por_nick($nick);
+                    $jugador=jugador_por_id($id);
 
-                //SI YA ESTA EN PARTIDA REDIRECCIONO A LA SALA DE SU PARTIDA
-                if($jugador['en_partida']==1){
-                    //REDIRECCIONAR A EL LOBBY DE LA PARTIDA
-                    $id_partida=obtener_partida_abierta($id);
-                    header("Location:match.php?id_partida=$id_partida");
-                }else{
-                    $con=conectarServidor();
+                    //SI YA ESTA EN PARTIDA REDIRECCIONO A LA SALA DE SU PARTIDA
+                    if($jugador['en_partida']==1){
+                        //REDIRECCIONAR A EL LOBBY DE LA PARTIDA
+                        $id_partida=obtener_partida_abierta($id);
+                        header("Location:match.php?id_partida=$id_partida");
+                    }else{
+                        $con=conectarServidor();
 
-                    //PONGO EL CAMPO BUSCANDO=1 PARA SABER QUE ESTE JUGADOR ESTA BUSCANDO PARTIDA
-                    $actualizar_buscando=$con->query("UPDATE usuario set buscando=1 where id=$id");
+                        //PONGO EL CAMPO BUSCANDO=1 PARA SABER QUE ESTE JUGADOR ESTA BUSCANDO PARTIDA
+                        $actualizar_buscando=$con->query("UPDATE usuario set buscando=1 where id=$id");
 
-                    $con->close();
+                        $con->close();
+                    }
                 }
             ?>  
         </section>

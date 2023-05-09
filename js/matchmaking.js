@@ -6,8 +6,8 @@ async function matchMaking(url_api="matchmaking.php") {
 
     console.log(datos);
 
-    if(datos["status"]=="ok"){
-        let id_partida=datos["id_partida"];
+    if(datos.status=="ok"){
+        let id_partida=datos.id_partida;
         window.location.replace("match.php?id_partida="+id_partida);
     }
 }

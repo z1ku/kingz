@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <script type="text/javascript" defer src="../js/chat.js"></script>
 </head>
 <body>
     <?php
@@ -50,6 +51,12 @@
                     header("Location:../index.php");
                 }
 
+                $id_jugador="";
+
+                if($tipo_usu=="player"){
+                    $id_jugador=id_jugador_por_nick($nick);
+                }
+
                 $id_partida=$_GET['id_partida'];
 
                 $datos_partida=partido_por_id($id_partida);
@@ -59,10 +66,17 @@
                 }
 
                 $jugadores=obtener_jugadores_partida($id_partida);
+
+                for($i=0;$i<count($jugadores);$i++){
+                    $id_jugadores[$i]=$jugadores[$i]['id'];
+                }
             ?>
             <div id="cabecera_partido">
                 <div id="nombre_equipos">
                     <span>TEAM A VS TEAM B</span>
+                    <?php
+                        echo "<p>ID DE LA PARTIDA: $id_partida</p>";
+                    ?>
                 </div>
                 <?php
                     if($datos_partida['id_mapa']!=null) {
@@ -77,56 +91,102 @@
                     }
                 ?>
             </div>
-            <div id="equipos">
-                <div id="equipoA">
-                    <?php
-                        for($i=0;$i<count($jugadores);$i++){
-                            if($jugadores[$i]["equipo"]=='A'){
+            <div id="cuerpo_partido">
+                <div id="equipos">
+                    <div class="equipo">
+                        <?php
+                            for($i=0;$i<count($jugadores);$i++){
+                                if($jugadores[$i]["equipo"]=='A'){
 
-                                if($jugadores[$i]["foto"]!=null){
-                                    $foto_jugador=$jugadores[$i]['foto'];
-                                }else{
-                                    $foto_jugador="jugador.png";
+                                    if($jugadores[$i]["foto"]!=null){
+                                        $foto_jugador=$jugadores[$i]['foto'];
+                                    }else{
+                                        $foto_jugador="jugador.png";
+                                    }
+
+                                    echo '<div class="partido_player">
+                                    <img src="../img/jugador/'.$foto_jugador.'" alt="">
+                                    <div>
+                                        <span class="player_nombre">'.$jugadores[$i]["nick"].'</span>
+                                        <span>MMR: '.$jugadores[$i]["mmr"].'</span>
+                                    </div>
+                                    </div>';
                                 }
-
-                                echo '<div class="partido_player">
-                                <img src="../img/jugador/'.$foto_jugador.'" alt="">
-                                <div>
-                                    <span>'.$jugadores[$i]["nick"].'</span>
-                                    <span>MMR: '.$jugadores[$i]["mmr"].'</span>
-                                </div>
-                                </div>';
                             }
-                        }
-                    ?>
-                </div>
-                <div>
-                    <span id="versus">VS</span>
-                </div>
-                <div id="equipoB">
-                    <?php
-                        for($i=0;$i<count($jugadores);$i++){
-                            if($jugadores[$i]["equipo"]=='B'){
+                        ?>
+                    </div>
+                    <div>
+                        <span id="versus">VS</span>
+                    </div>
+                    <div class="equipo">
+                        <?php
+                            for($i=0;$i<count($jugadores);$i++){
+                                if($jugadores[$i]["equipo"]=='B'){
 
-                                if($jugadores[$i]["foto"]!=null){
-                                    $foto_jugador=$jugadores[$i]['foto'];
-                                }else{
-                                    $foto_jugador="jugador.png";
+                                    if($jugadores[$i]["foto"]!=null){
+                                        $foto_jugador=$jugadores[$i]['foto'];
+                                    }else{
+                                        $foto_jugador="jugador.png";
+                                    }
+
+                                    echo '<div class="partido_player">
+                                    <img src="../img/jugador/'.$foto_jugador.'" alt="">
+                                    <div>
+                                        <span class="player_nombre">'.$jugadores[$i]["nick"].'</span>
+                                        <span>MMR: '.$jugadores[$i]["mmr"].'</span>
+                                    </div>
+                                    </div>';
                                 }
-
-                                echo '<div class="partido_player">
-                                <img src="../img/jugador/'.$foto_jugador.'" alt="">
-                                <div>
-                                    <span>'.$jugadores[$i]["nick"].'</span>
-                                    <span>MMR: '.$jugadores[$i]["mmr"].'</span>
-                                </div>
-                                </div>';
                             }
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
                 <div id="chat_partido">
-                
+                    <div id="caja_mensajes">
+                        <?php
+                            if(isset($_POST['enviar_mensaje'])){
+                                $con=conectarServidor();
+
+                                $mensaje=$_POST['mensaje'];
+
+                                if(strlen($_POST['mensaje'])<=100 && $_POST['mensaje']!=null){
+                                    $marca=time();
+
+                                    $insertar=$con->prepare("INSERT into mensaje values(null,?,?,?,?)");
+                                    $insertar->bind_param("siii",$mensaje,$marca,$id_jugador,$id_partida);
+
+                                    if ($insertar->execute()) {
+                                        // inserción exitosa
+                                    } else {
+                                        // error en la inserción
+                                        echo "Error en la inserción del mensaje: " . $con->error;
+                                    }
+
+                                    $insertar->close();
+                                }
+
+                                $con->close();
+                                header("Location:match.php?id_partida=$id_partida");
+                            }
+                            
+                            // IMPRIMIR LOS MENSAJES POR PHP
+                            // $todos_mensajes=todos_mensajes_partida($id_partida);
+
+                            // if($todos_mensajes!=null){
+                            //     for($i=0;$i<count($todos_mensajes);$i++){
+                            //         echo '<p>'.$todos_mensajes[$i]['nick'].': '.$todos_mensajes[$i]['texto'].'</p>';
+                            //     }
+                            // }
+                        ?>
+                    </div>
+                    <?php
+                        if($datos_partida['estado']==0 && in_array($id_jugador, $id_jugadores)){
+                            echo '<form action="#" method="post" id="enviar_mensaje">
+                            <input type="text" name="mensaje" id="mensaje" max_length="100">
+                            <input type="submit" name="enviar_mensaje" value="Enviar">
+                            </form>';
+                        }
+                    ?>
                 </div>
             </div>
         </section>
