@@ -432,7 +432,7 @@
             <div>
                 <a href="#">Política de privacidad</a>
                 <a href="#">Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="php/soporte.php">Soporte</a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-twitch"></i></a>
                 <a href="#"><i class="fa-brands fa-youtube"></i></a>
@@ -447,7 +447,7 @@
             <div>
                 <a href="#">Política de privacidad</a>
                 <a href="#">Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="soporte.php">Soporte</a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-twitch"></i></a>
                 <a href="#"><i class="fa-brands fa-youtube"></i></a>

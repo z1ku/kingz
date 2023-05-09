@@ -67,8 +67,16 @@
 
                 $jugadores=obtener_jugadores_partida($id_partida);
 
+                $id_mayor_elo=0;
+                $elo_max=0;
+
                 for($i=0;$i<count($jugadores);$i++){
                     $id_jugadores[$i]=$jugadores[$i]['id'];
+
+                    if($jugadores[$i]['mmr']>$elo_max){
+                        $id_mayor_elo=$jugadores[$i]['id'];
+                        $elo_max=$jugadores[$i]['mmr'];
+                    }
                 }
             ?>
             <div id="cabecera_partido">
@@ -181,14 +189,22 @@
                     </div>
                     <?php
                         if($datos_partida['estado']==0 && in_array($id_jugador, $id_jugadores)){
-                            echo '<form action="#" method="post" id="enviar_mensaje">
-                            <input type="text" name="mensaje" id="mensaje" max_length="100">
-                            <input type="submit" name="enviar_mensaje" value="Enviar">
+                            echo '<form action="#" method="post" id="form_enviar_mensaje">
+                                <input type="text" name="mensaje" id="mensaje" max_length="100">
+                                <input type="submit" name="enviar_mensaje" value="Enviar" id="btn_mensaje">
                             </form>';
                         }
                     ?>
                 </div>
             </div>
+            <?php
+                if($tipo_usu=="admin" || ($datos_partida['estado']==0 && $id_jugador==$id_mayor_elo)){
+                    echo '<form action="introducir_resultado.php" method="post">
+                        <input type="submit" name="introducir_resultado" value="Introducir resultado" id="btn_resultado">
+                        <input type="hidden" name="id_partida" value="'.$id_partida.'">
+                    </form>';
+                }
+            ?>
         </section>
     </main>
     <?php

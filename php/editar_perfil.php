@@ -82,12 +82,12 @@
                             $pass=md5(md5($_POST['pass']));
                             $_SESSION['pass']=$pass;
                         }else{
-                            $buscar_pass=$con->query("select pass from usuario where id=$id");
+                            $buscar_pass=$con->query("SELECT pass from usuario where id=$id");
                             $fila_pass=$buscar_pass->fetch_array(MYSQLI_ASSOC);
                             $pass=$fila_pass['pass'];
                         }
 
-                        $buscar=$con->prepare("select count(id) from usuario where nick=?");
+                        $buscar=$con->prepare("SELECT count(id) from usuario where nick=?");
                         $buscar->bind_param("s", $nick);
                         $buscar->execute();
                         $buscar->bind_result($num);
@@ -98,7 +98,7 @@
                         if($num>0 && $nick!=$nick_antiguo){
                             $mensaje="Ese nick ya esta en uso";
                         }else{
-                            $sentencia=$con->prepare("update usuario set nick=?, pass=?, correo=?, foto=? where id=?");
+                            $sentencia=$con->prepare("UPDATE usuario set nick=?, pass=?, correo=?, foto=? where id=?");
             
                             $sentencia->bind_param("ssssi",$nick,$pass,$correo,$foto,$id);
             
