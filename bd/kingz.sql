@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2023 a las 22:55:22
+-- Tiempo de generación: 09-05-2023 a las 19:09:50
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -57,11 +57,32 @@ INSERT INTO `mapa` (`id`, `nombre`, `foto`) VALUES
 CREATE TABLE `mensaje` (
   `id` bigint(20) NOT NULL,
   `texto` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
+  `marca` int(100) NOT NULL,
   `id_usuario` bigint(20) UNSIGNED NOT NULL,
   `id_partida` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `mensaje`
+--
+
+INSERT INTO `mensaje` (`id`, `texto`, `marca`, `id_usuario`, `id_partida`) VALUES
+(1, 'Hola', 1683622150, 1, 4),
+(2, 'que tal', 1683622219, 1, 4),
+(3, 'soy colosal', 1683622406, 1, 4),
+(4, 'soy colosal', 1683622426, 1, 4),
+(5, 'si', 1683622584, 1, 4),
+(6, 'te la mamas', 1683622611, 2, 4),
+(25, 'pene', 1683623471, 2, 4),
+(26, 'awdawwd', 1683623479, 2, 4),
+(27, 'adwaad', 1683623480, 2, 4),
+(29, 'dada', 1683627953, 1, 4),
+(30, 'aadwadwaawawaaaaa', 1683635131, 1, 4),
+(31, 'aaaa', 1683635331, 1, 4),
+(32, 'Amazing', 1683635454, 1, 4),
+(33, 'keeek', 1683636217, 1, 4),
+(34, 'Hola', 1683636498, 2, 4),
+(35, 'dawd', 1683638668, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -124,7 +145,7 @@ INSERT INTO `partida` (`id`, `resultado_a`, `resultado_b`, `fecha`, `estado`, `i
 (1, 13, 9, '2023-04-30', 1, 1),
 (2, 10, 13, '2023-04-29', 1, 8),
 (3, 13, 8, '2023-05-07', 1, 4),
-(4, NULL, NULL, '2023-05-07', 0, 7);
+(4, 13, 9, '2023-05-07', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -165,9 +186,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
 (0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, 1, NULL, NULL),
-(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3000, 1, 1, 0),
-(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1100, 1, 1, 0),
-(3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 1);
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3020, 1, 0, 1),
+(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1080, 1, 0, 0),
+(3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -229,6 +250,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `mapa`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `mensaje`
+--
+ALTER TABLE `mensaje`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `noticia`
