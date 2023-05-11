@@ -32,6 +32,24 @@ textarea {
     resize: none;
 }
 
+.btn_activar{
+    background-color: #28a745;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 0.5rem;
+    color: white;
+}
+
+.btn_desactivar{
+    background-color: #a72828;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 0.5rem;
+    color: white;
+}
+
 /* CSS PARA EL MENU */
 header{
     display: flex;
@@ -140,6 +158,8 @@ nav input{
     width: 80%;
     margin: 4rem auto;
     min-height: 90vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .seccion h1{
@@ -153,6 +173,45 @@ nav input{
     text-align: center;
 }
 
+.contenedor_buscar_nuevo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.contenedor_buscar_nuevo input{
+    padding: 0.5rem;
+    margin-right: 0.3rem;
+    font: inherit;
+}
+
+.contenedor_buscar_nuevo input[type=submit]{
+    background-color: yellow;
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+.contenedor_buscar_nuevo input[type=submit]:hover{
+    background-color: rgb(253, 253, 85);
+}
+
+.contenedor_buscar_nuevo form{
+    display: flex;
+}
+
+.contenedor_buscar_nuevo a{
+    background-color: black;
+    padding: 0.5rem;
+    border: 1px solid black;
+    text-decoration: none;
+    color: white;
+}
+
+.contenedor_buscar_nuevo a:hover{
+    background-color: rgb(49, 49, 49);
+}
+
 /* CSS PARA FORMS */
 .formkingz{
     display: flex;
@@ -163,7 +222,7 @@ nav input{
     padding: 2rem;
     color: white;
     width: fit-content;
-    margin: auto;
+    margin: 1rem auto;
 }
 
 .formkingz>div>label{
@@ -315,7 +374,7 @@ nav input{
 #btn_resultado{
     color: #fff;
     background-color: #28a745;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
     font-family: "Jeju";
     font-size: 1rem;
 }
@@ -326,7 +385,6 @@ nav input{
     font-family: "Jeju";
     font-size: 1rem;
 }
-
 
 /* CSS PARA LA PAGINA PERFIL DE JUGADOR */
 #perfil_jugador{
@@ -422,18 +480,6 @@ nav input{
 }
 
 /* CSS PARA EL LEADERBOARD */
-#leaderboard{
-    display: flex;
-    flex-direction: column;
-}
-
-#leaderboard h1{
-    color: white;
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 0;
-}
-
 #leaderboard table{
     border-collapse: collapse;
     color: white;
@@ -459,14 +505,12 @@ nav input{
 #leaderboard tr>th:nth-child(2){
     text-align: start;
 }
-
 #leaderboard tr>th:nth-child(6){
     text-align: end;
 }
 #leaderboard tr>td:nth-child(6){
     text-align: end;
 }
-
 #leaderboard tr>td:nth-child(3){
     text-align: center;
 }
@@ -476,7 +520,6 @@ nav input{
 #leaderboard tr>td:nth-child(5){
     text-align: center;
 }
-
 #leaderboard tbody>tr:hover{
     background-color: #272727;
 }
@@ -484,6 +527,54 @@ nav input{
 /* CSS SECCION SOPORTE */
 #seccionSoporte p{
     text-align: center;
+}
+
+/* CSS PANEL ADMIN */
+.nav_admin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 25%;
+    margin: 1rem auto;
+}
+
+.nav_admin a{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: yellow;
+    padding: 0.5rem 1rem;
+    font-family: "Jeju";
+    font-size: 1.5rem;
+    margin: 0.5rem;
+    width: 100%;
+}
+
+/* CSS PARA PANEL USUARIOS */
+#seccionUsuarios table{
+    border-collapse: collapse;
+    color: white;
+}
+
+#seccionUsuarios tr{
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#seccionUsuarios td{
+    padding: 1rem;
+    text-align: center;
+}
+
+#seccionUsuarios th{
+    color: #cfcfcf;
+    background-color: #131313;
+    padding: 1rem;
+    width: 33%;
+}
+
+#seccionUsuarios tbody>tr:hover{
+    background-color: #272727;
 }
 
 /* CSS PARA EL FOOTER */

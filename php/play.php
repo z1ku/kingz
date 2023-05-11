@@ -50,7 +50,6 @@
         <section id="play" class="seccion">
             <div id="cargando">
                 <h1>Buscando partida</h1>    
-                <!-- <progress max="100">Buscando partida</progress> -->
                 <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 <p>Buscando partida, cuando encontremos una partida para ti te redirigiremos a ella</p>
                 <p>Gracias por esperar</p>

@@ -283,6 +283,59 @@
         return $datos;
     }
 
+    // FUNCIONES PARA ADMIN
+    ////////////////////////////////////////////////////////////////////
+    // OBTENER TODOS LOS USUARIOS
+    function todos_usuarios(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from usuario where id <> 0 order by id asc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['nick']=$fila_buscar['nick'];
+                $datos[$i]['correo']=$fila_buscar['correo'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // BUSCAR USUARIO POR NOMBRE
+    function buscar_usuario_por_nombre($cadena){;
+        $con=conectarServidor();
+
+        $param="%$cadena%";
+
+        $buscar=$con->prepare("SELECT id,nick,correo,estado from usuario where id <> 0 and nick like ?");
+        $buscar->bind_result($id,$nick,$correo,$estado);
+        $buscar->bind_param("s",$param);
+        $buscar->execute();
+        $buscar->store_result();
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($buscar->fetch()){
+                $datos[$i]['id']=$id;
+                $datos[$i]['nick']=$nick;
+                $datos[$i]['correo']=$correo;
+                $datos[$i]['estado']=$estado;
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO
