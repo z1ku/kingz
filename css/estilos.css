@@ -28,6 +28,10 @@ input[type=submit]{
     text-decoration: none;
 }
 
+textarea {
+    resize: none;
+}
+
 /* CSS PARA EL MENU */
 header{
     display: flex;
@@ -477,6 +481,11 @@ nav input{
     background-color: #272727;
 }
 
+/* CSS SECCION SOPORTE */
+#seccionSoporte p{
+    text-align: center;
+}
+
 /* CSS PARA EL FOOTER */
 footer{
     display: flex;
@@ -497,8 +506,6 @@ footer a{
 footer i{
     font-size: 1.5rem;
 }
-
-
 
 
 /* CSS PARA EL LOADER */
