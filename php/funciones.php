@@ -336,6 +336,83 @@
         return $datos;
     }
 
+    // OBTENER TODAS LAS PARTIDAS ABIERTAS
+    function todas_partidas_abiertas(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from partida where estado=0 order by id desc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['resultado_a']=$fila_buscar['resultado_a'];
+                $datos[$i]['resultado_b']=$fila_buscar['resultado_b'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $datos[$i]['id_mapa']=$fila_buscar['id_mapa'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // OBTENER TODAS LAS PARTIDAS CERRADAS
+    function todas_partidas_cerradas(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from partida where estado=1 order by id desc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['resultado_a']=$fila_buscar['resultado_a'];
+                $datos[$i]['resultado_b']=$fila_buscar['resultado_b'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $datos[$i]['id_mapa']=$fila_buscar['id_mapa'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // BUSCAR PARTIDA POR ID
+    function buscar_partida_por_id($id){;
+        $con=conectarServidor();
+
+        $buscar=$con->prepare("SELECT * from partida where id=?");
+        $buscar->bind_result($id,$resultado_a,$resultado_b,$fecha,$estado,$id_mapa);
+        $buscar->bind_param("i",$id);
+        $buscar->execute();
+        $buscar->store_result();
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($buscar->fetch()){
+                $datos[$i]['id']=$id;
+                $datos[$i]['resultado_a']=$resultado_a;
+                $datos[$i]['resultado_b']=$resultado_b;
+                $datos[$i]['fecha']=$fecha;
+                $datos[$i]['estado']=$estado;
+                $datos[$i]['id_mapa']=$id_mapa;
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO

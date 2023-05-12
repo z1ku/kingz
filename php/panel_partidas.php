@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>Partidas</title>
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,56 +44,56 @@
         }
     ?>
     <main>
-        <section id="seccionUsuarios" class="seccion">
-            <h1>Usuarios</h1>
+        <section id="seccionPartidas" class="seccion">
+            <h1>Partidas</h1>
             <div class="contenedor_buscar_nuevo">
                 <form action="#" method="post">
-                    <input type="text" placeholder="Nick" name="cadena">
-                    <input type="submit" name="buscar_usuario" value="Buscar">
-                    <a href="panel_usuarios.php">Reset</a>
+                    <input type="number" placeholder="Id partida" name="numero">
+                    <input type="submit" name="buscar_partida" value="Buscar">
+                    <a href="panel_partidas.php">Reset</a>
                 </form>
+                <div class="contenedor_abiertas_cerradas">
+                    <form action="#" method="post">
+                        <input type="submit" name="ver_abiertas" value="Abiertas">
+                    </form>
+                    <form action="#" method="post">
+                        <input type="submit" name="ver_cerradas" value="Cerradas">
+                    </form>
+                </div>
             </div>
             <?php
                 if($tipo_usu=="admin"){
 
-                    if(isset($_POST['buscar_usuario'])){
-                        $cadena=$_POST['cadena'];
+                    if(isset($_POST['buscar_partida'])){
+                        $numero=$_POST['numero'];
 
-                        $usuarios=buscar_usuario_por_nombre($cadena);
+                        $partidas=buscar_partida_por_id($numero);
+                    }else if(isset($_POST['ver_cerradas'])){
+                        $partidas=todas_partidas_cerradas();
+                    }else if(isset($_POST['ver_abiertas'])){
+                        $partidas=todas_partidas_abiertas();
                     }else{
-                        $usuarios=todos_usuarios();
+                        $partidas=todas_partidas_abiertas();
                     }
 
                     echo '<table>
                     <thead>
                         <tr>
-                            <th>Nick</th>
-                            <th>Correo</th>
-                            <th>Estado</th>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Score</th>
                         </tr>
                     </thead>
                     <tbody>';
-                    if($usuarios!=null){
-                        for($i=0;$i<count($usuarios);$i++){
+                    if($partidas!=null){
+                        for($i=0;$i<count($partidas);$i++){
+                            $fecha_formateada=date("d-m-Y",strtotime($partidas[$i]['fecha']));
+
                             echo '<tr>
-                                <td><a href="ver_perfil.php?id_player='.$usuarios[$i]['id'].'">'.$usuarios[$i]['nick'].'</a></td>
-                                <td>'.$usuarios[$i]['correo'].'</td>';
-                            if($usuarios[$i]['estado']==1){
-                                echo '<td>
-                                    <form action="activar_usuario.php" method="post">
-                                        <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
-                                        <input type="submit" name="desactivar" class="btn_desactivar" value="Desactivar">
-                                    </form>
-                                </td>';
-                            }else{
-                                echo '<td>
-                                    <form action="activar_usuario.php" method="post">
-                                        <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
-                                        <input type="submit" name="activar" class="btn_activar" value="Activar">
-                                    </form>
-                                </td>';
-                            }
-                            echo '</tr>';
+                                <td><a href="match.php?id_partida='.$partidas[$i]['id'].'">'.$partidas[$i]['id'].'</a></td>
+                                <td>'.$fecha_formateada.'</td>
+                                <td>'.$partidas[$i]['resultado_a'].'/'.$partidas[$i]['resultado_b'].'</td>
+                            </tr>';
                         }
                     }
                     echo '</tbody>
