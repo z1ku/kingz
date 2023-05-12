@@ -73,10 +73,17 @@
                             $asunto=$_POST['asunto'];
                             $mensaje=$_POST['mensaje'];
                             $fecha=date("Y-m-d");
-                            $foto=$id_siguiente.".jpg";
+
+                            if(is_uploaded_file($_FILES['foto']['tmp_name'])){
+                                $foto=$id_siguiente.".jpg";
+                            }else{
+                                $foto=null;
+                            }
+
+                            $estado=0;
 
                             $sentencia=$con->prepare("INSERT into ticket values(null,?,?,?,?,?)");
-                            $sentencia->bind_param("ssssi",$fecha,$asunto,$mensaje,$foto,$id_usuario);
+                            $sentencia->bind_param("ssssi",$fecha,$asunto,$mensaje,$foto,$estado,$id_usuario);
             
                             if($sentencia->execute()){
                                 if(is_uploaded_file($_FILES['foto']['tmp_name'])){

@@ -413,6 +413,113 @@
         return $datos;
     }
 
+    // OBTENER TODOS LOS TICKETS ABIERTOS
+    function todos_tickets_abiertos(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT ticket.*,usuario.nick from ticket,usuario where id_usuario=usuario.id and ticket.estado=0 order by id desc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['asunto']=$fila_buscar['asunto'];
+                $datos[$i]['texto']=$fila_buscar['texto'];
+                $datos[$i]['foto']=$fila_buscar['foto'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $datos[$i]['id_usuario']=$fila_buscar['id_usuario'];
+                $datos[$i]['nick']=$fila_buscar['nick'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // OBTENER TODOS LOS TICKETS CERRADOS
+    function todos_tickets_cerrados(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT ticket.*,usuario.nick from ticket,usuario where id_usuario=usuario.id and ticket.estado=1 order by id desc");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['asunto']=$fila_buscar['asunto'];
+                $datos[$i]['texto']=$fila_buscar['texto'];
+                $datos[$i]['foto']=$fila_buscar['foto'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $datos[$i]['id_usuario']=$fila_buscar['id_usuario'];
+                $datos[$i]['nick']=$fila_buscar['nick'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // BUSCAR TICKET POR ID (MATRIZ)
+    function buscar_ticket_por_id($id){;
+        $con=conectarServidor();
+
+        $buscar=$con->prepare("SELECT ticket.*,usuario.nick from ticket,usuario where id_usuario=usuario.id and ticket.id=?");
+        $buscar->bind_result($id,$fecha,$asunto,$texto,$foto,$estado,$id_usuario,$nick);
+        $buscar->bind_param("i",$id);
+        $buscar->execute();
+        $buscar->store_result();
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($buscar->fetch()){
+                $datos[$i]['id']=$id;
+                $datos[$i]['fecha']=$fecha;
+                $datos[$i]['asunto']=$asunto;
+                $datos[$i]['texto']=$texto;
+                $datos[$i]['foto']=$foto;
+                $datos[$i]['estado']=$estado;
+                $datos[$i]['id_usuario']=$id_usuario;
+                $datos[$i]['nick']=$nick;
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // TICKET POR ID
+    function ticket_por_id($id){
+        $con = conectarServidor();
+
+        $buscar=$con->query("SELECT ticket.*,usuario.nick from ticket,usuario where id_usuario=usuario.id and ticket.id=$id");
+
+        if($buscar->num_rows>0){
+            $fila=$buscar->fetch_array(MYSQLI_ASSOC);
+            $datos['id']=$fila['id'];
+            $datos['fecha']=$fila['fecha'];
+            $datos['asunto']=$fila['asunto'];
+            $datos['texto']=$fila['texto'];
+            $datos['foto']=$fila['foto'];
+            $datos['estado']=$fila['estado'];
+            $datos['id_usuario']=$fila['id_usuario'];
+            $datos['nick']=$fila['nick'];
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO
