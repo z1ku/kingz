@@ -40,7 +40,7 @@
     ?>
     <main>
         <!-- FOTO DE CABECERA WAPA TAL VEZ CON ALGUNAS NOTICIAS O EXPLICAR UN POCO QUE ES LA APLICACION -->
-        <img src="img/csgo.webp" alt="foto header" id="imgCabecera">
+        <img src="img/valorant.avif" alt="foto header" id="imgCabecera">
         <!-- SECCION CON ALGUNAS FICHAS EXPLICANDO LO QUE PODRÍAS HACER EN EL SITIO WEB -->
         <section id="bienvenida">
             <h1>PLATAFORMA DE COMPETICIÓN EN LÍNEA</h1>
