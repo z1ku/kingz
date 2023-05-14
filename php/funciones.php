@@ -585,6 +585,29 @@
         return $datos;
     }
 
+    // OBTENER TODAS LAS NOTICIAS
+    function todas_noticias(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from noticia");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['titulo']=$fila_buscar['titulo'];
+                $datos[$i]['texto']=$fila_buscar['texto'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['foto']=$fila_buscar['foto'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO

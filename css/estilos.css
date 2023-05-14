@@ -697,6 +697,32 @@ nav input{
     background-color: #272727;
 }
 
+/* CSS PARA PANEL NOTICIAS */
+#seccionNoticias table{
+    border-collapse: collapse;
+    color: white;
+}
+
+#seccionNoticias tr{
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#seccionNoticias td{
+    padding: 1rem;
+    text-align: center;
+}
+
+#seccionNoticias th{
+    color: #cfcfcf;
+    background-color: #131313;
+    padding: 1rem;
+    width: 33%;
+}
+
+#seccionNoticias tbody>tr:hover{
+    background-color: #272727;
+}
+
 /* CSS PARA EL FOOTER */
 footer{
     display: flex;
