@@ -283,6 +283,29 @@
         return $datos;
     }
 
+    // OBTENER MAPA ALEATORIO DE LOS MAPAS ACTIVOS
+    function id_mapa_aleatorio(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT id from mapa where estado=1");
+
+        if($buscar->num_rows>0){
+            $i=1;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]=$fila_buscar['id'];
+                $i++;
+            }
+
+            $num_ale=rand(1, count($datos));
+
+            $id_ale=$datos[$num_ale];
+        }else{
+            $id_ale=null;
+        }
+
+        $con->close();
+        return $id_ale;
+    }
+
     // FUNCIONES PARA ADMIN
     ////////////////////////////////////////////////////////////////////
     // OBTENER TODOS LOS USUARIOS
@@ -512,6 +535,48 @@
             $datos['estado']=$fila['estado'];
             $datos['id_usuario']=$fila['id_usuario'];
             $datos['nick']=$fila['nick'];
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // OBTENER TODOS LOS MAPAS
+    function todos_mapas(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from mapa");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['nombre']=$fila_buscar['nombre'];
+                $datos[$i]['foto']=$fila_buscar['foto'];
+                $datos[$i]['estado']=$fila_buscar['estado'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // OBTENER MAPA POR ID
+    function obtener_mapa_por_id($id){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from mapa where id=$id");
+
+        if($buscar->num_rows>0){
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos['id']=$fila_buscar['id'];
+                $datos['nombre']=$fila_buscar['nombre'];
+                $datos['foto']=$fila_buscar['foto'];
+                $datos['estado']=$fila_buscar['estado'];
+            }
         }else{
             $datos=null;
         }
