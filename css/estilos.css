@@ -306,6 +306,20 @@ nav input{
     border: 1px solid black;
 }
 
+#contenedorResultado{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131313;
+    border: 1px solid black;
+    margin-bottom: 3rem;
+}
+
+#contenedorResultado p{
+    font-size: 1.5rem;
+}
+
 #cuerpo_partido{
     display: flex;
     width: 100%;

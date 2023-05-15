@@ -99,6 +99,15 @@
                     }
                 ?>
             </div>
+            <?php
+                if($datos_partida['estado']==1){
+                    if($datos_partida['resultado_a']!=null && $datos_partida['resultado_b']!=null){
+                        echo '<div id="contenedorResultado">
+                            <p>'.$datos_partida['resultado_a'].' - '.$datos_partida['resultado_b'].'</p>
+                        </div>';
+                    }
+                }
+            ?>
             <div id="cuerpo_partido">
                 <div id="equipos">
                     <div class="equipo">
