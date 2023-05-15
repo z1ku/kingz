@@ -658,10 +658,11 @@ nav input{
 /* CSS PARA PAGINA TICKET */
 #ticket{
     display: flex;
-    width: fit-content;
 }
 
 #ticket .contenedorTicket{
+    display: flex;
+    flex-direction: column;
     background-color: #131313;
     border: 1px solid black;
     padding: 2rem;
@@ -670,6 +671,27 @@ nav input{
 }
 
 #ticket img{
+    margin: 1rem;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+/* CSS PARA PAGINA NOTICIA */
+#noticia{
+    display: flex;
+}
+
+#noticia .contenedorNoticia{
+    display: flex;
+    flex-direction: column;
+    background-color: #131313;
+    border: 1px solid black;
+    padding: 2rem;
+    color: white;
+    margin: 1rem;
+}
+
+#noticia img{
     margin: 1rem;
     object-fit: cover;
     border: 1px solid black;
