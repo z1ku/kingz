@@ -123,7 +123,7 @@ nav input{
 
 /* CSS PARA EL HOME */
 #imgCabecera{
-    height: 450px;
+    height: 550px;
     width: 100%;
     object-fit: cover;
     border-bottom: 1px solid black;
@@ -252,6 +252,10 @@ nav input{
     justify-content: space-between;
     width: 100%;
     margin-bottom: 2rem;
+}
+
+.formkingz input{
+    font-family: inherit;
 }
 
 .formkingz input[type=submit]{

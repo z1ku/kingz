@@ -67,7 +67,7 @@
                     }else{
                         $con=conectarServidor();
 
-                        $buscar="select auto_increment from information_schema.tables where table_schema='kingz' and table_name='mapa'";
+                        $buscar="select auto_increment from information_schema.tables where table_schema='kingz' and table_name='noticia'";
                         $resultado=$con->query($buscar);
 
                         $fila=$resultado->fetch_array(MYSQLI_NUM);

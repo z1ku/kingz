@@ -608,6 +608,27 @@
         return $datos;
     }
 
+    // OBTENER NOTICIA POR ID
+    function obtener_noticia_por_id($id){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from noticia where id=$id");
+
+        if($buscar->num_rows>0){
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos['id']=$fila_buscar['id'];
+                $datos['titulo']=$fila_buscar['titulo'];
+                $datos['texto']=$fila_buscar['texto'];
+                $datos['foto']=$fila_buscar['foto'];
+                $datos['fecha']=$fila_buscar['fecha'];
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     // FUNCIONES PARA HEADER
     ////////////////////////////////////////////////////////////////////
     //HEADER INDEX INVITADO

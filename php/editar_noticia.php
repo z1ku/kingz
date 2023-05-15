@@ -58,31 +58,36 @@
                 }
 
                 if(isset($_POST['guardar_noticia'])){
-                    if($_POST['nombre']==""){
-                        $mensaje="Nombre no puede estar vacío";
-                    }else if(strlen($_POST['nombre'])>50){
-                        $mensaje="El nombre no puede ser superior a 50 caracteres";
+                    if($_POST['titulo']==""){
+                        $mensaje="Titulo no puede estar vacío";
+                    }else if($_POST['texto']==""){
+                        $mensaje="Noticia no puede estar vacío";
+                    }else if(strlen($_POST['titulo'])>50){
+                        $mensaje="El título no puede ser superior a 50 caracteres";
+                    }else if(strlen($_POST['texto'])>500){
+                        $mensaje="La noticia no puede ser superior a 500 caracteres";
                     }else if($_FILES['foto']['type']!="image/jpeg" && is_uploaded_file($_FILES['foto']['tmp_name'])){
                         $mensaje="La foto debe estar en formato jpg";
                     }else{
                         $con=conectarServidor();
 
-                        $id_mapa=$_POST['id_mapa'];
-                        $nombre=$_POST['nombre'];
-                        $foto=$id_mapa.".jpg";
+                        $id_noticia=$_POST['id_noticia'];
+                        $titulo=$_POST['titulo'];
+                        $texto=$_POST['texto'];
+                        $foto=$id_noticia.".jpg";
 
-                        $sentencia=$con->prepare("UPDATE mapa set nombre=?, foto=? where id=?");
+                        $sentencia=$con->prepare("UPDATE noticia set titulo=?, texto=?, foto=? where id=?");
         
-                        $sentencia->bind_param("ssi",$nombre,$foto,$id_mapa);
+                        $sentencia->bind_param("sssi",$titulo,$texto,$foto,$id_noticia);
         
                         if($sentencia->execute()){
                             if(is_uploaded_file($_FILES['foto']['tmp_name'])){
-                                move_uploaded_file($_FILES['foto']['tmp_name'], "../img/mapa/$foto");
+                                move_uploaded_file($_FILES['foto']['tmp_name'], "../img/noticia/$foto");
                             }
 
-                            $datos_mapa=obtener_mapa_por_id($id_mapa);
+                            $datos_noticia=obtener_noticia_por_id($id_noticia);
                             
-                            $mensaje="Mapa editado correctamente";
+                            $mensaje="Noticia editado correctamente";
                         }else{
                             echo "<p>ERROR:</p> " . $sentencia->error;
                         }
@@ -90,7 +95,7 @@
                         $sentencia->close();
 
                         $con->close();
-                        header("refresh:2; url=panel_mapas.php");
+                        header("refresh:2; url=panel_noticias.php");
                     }
                 }
 
@@ -100,15 +105,19 @@
 
                 echo '<form action="#" method="post" enctype="multipart/form-data" class="formkingz">
                 <div>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" value="'.$datos_mapa['nombre'].'" required>
+                    <label for="titulo">Título:</label>
+                    <input type="text" name="titulo" value="'.$datos_noticia['titulo'].'" required>
+                </div>
+                <div>
+                    <label for="texto">Noticia:</label>
+                    <textarea name="texto" rows="10" cols="50" required>'.$datos_noticia['texto'].'</textarea>
                 </div>
                 <div>
                     <label for="foto">Cambiar foto:</label>
                     <input type="file" name="foto" accept="image/jpeg">
                 </div>
-                <input type="submit" name="guardar_mapa" value="Guardar">
-                <input type="hidden" name="id_mapa" value="'.$id_mapa.'">
+                <input type="submit" name="guardar_noticia" value="Guardar">
+                <input type="hidden" name="id_noticia" value="'.$id_noticia.'">
                 </form>';
             ?>
         </section>
