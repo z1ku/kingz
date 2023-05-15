@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2023 a las 19:09:50
+-- Tiempo de generación: 15-05-2023 a las 21:57:57
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -30,23 +30,24 @@ SET time_zone = "+00:00";
 CREATE TABLE `mapa` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `foto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL
+  `foto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `estado` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `mapa`
 --
 
-INSERT INTO `mapa` (`id`, `nombre`, `foto`) VALUES
-(1, 'LOTUS', '1.jpg'),
-(2, 'PEARL', '2.jpg'),
-(3, 'FRACTURE', '3.webp'),
-(4, 'BREEZE', '4.webp'),
-(5, 'ICEBOX', '5.jpg'),
-(6, 'BIND', '6.webp'),
-(7, 'HAVEN', '7.webp'),
-(8, 'SPLIT', '8.jpg'),
-(9, 'ASCENT', '9.jpg');
+INSERT INTO `mapa` (`id`, `nombre`, `foto`, `estado`) VALUES
+(1, 'LOTUS', '1.jpg', 1),
+(2, 'PEARL', '2.jpg', 1),
+(3, 'FRACTURE', '3.webp', 1),
+(4, 'BREEZE', '4.webp', 1),
+(5, 'ICEBOX', '5.jpg', 1),
+(6, 'BIND', '6.webp', 1),
+(7, 'HAVEN', '7.webp', 1),
+(8, 'SPLIT', '8.jpg', 1),
+(9, 'ASCENT', '9.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -97,6 +98,13 @@ CREATE TABLE `noticia` (
   `foto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `noticia`
+--
+
+INSERT INTO `noticia` (`id`, `titulo`, `texto`, `foto`, `fecha`) VALUES
+(1, 'Noticia de prueba', 'Valorant es un hero shooter en primera persona multijugador gratuito desarrollado y publicado por Riot Games. El juego se anunció por primera vez con el nombre en clave Project A en octubre de 2019. Fue lanzado para Microsoft Windows el 2 de junio de 2020 después de su beta cerrada lanzada el 7 de abril de 2020.', '1.jpg', '2023-05-15');
 
 -- --------------------------------------------------------
 
@@ -158,9 +166,18 @@ CREATE TABLE `ticket` (
   `fecha` date NOT NULL,
   `asunto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `texto` varchar(500) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `foto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `foto` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `estado` tinyint(1) UNSIGNED NOT NULL,
   `id_usuario` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `fecha`, `asunto`, `texto`, `foto`, `estado`, `id_usuario`) VALUES
+(1, '2023-05-11', 'Prueba', 'probando', NULL, 0, 1),
+(2, '2023-05-11', 'Prueba foto', 'Subiendo foto', '2.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -186,7 +203,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
 (0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, 1, NULL, NULL),
-(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3020, 1, 0, 1),
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3020, 1, 0, 0),
 (2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1080, 1, 0, 0),
 (3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 0);
 
@@ -261,7 +278,7 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `noticia`
 --
 ALTER TABLE `noticia`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `partida`
@@ -273,7 +290,7 @@ ALTER TABLE `partida`
 -- AUTO_INCREMENT de la tabla `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
