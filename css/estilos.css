@@ -245,6 +245,20 @@ nav input{
     background-color: #272727;
 }
 
+#seccion_weapons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #131313;
+    border: 1px solid black;
+    margin: 1rem;
+}
+
+#seccion_weapons h2{
+    font-size: 2rem;
+}
+
 /* CSS PARA PLAY */
 #play{
     text-align: center;

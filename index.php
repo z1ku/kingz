@@ -129,6 +129,20 @@
                 </article>
             </div>
         </section>
+        <section id="seccion_weapons">
+            <h2>LAS ARMAS FAVORITAS</h2>
+            <div id="contenedor_weapons">
+                <div id="vandal">
+
+                </div>
+                <div id="phantom">
+
+                </div>
+                <div id="operator">
+                    
+                </div>
+            </div>
+        </section>
     </main>
     <?php
         footerIndex();
