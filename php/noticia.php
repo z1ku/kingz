@@ -47,7 +47,7 @@
     <main>
         <section id="noticia" class="seccion">
             <?php
-                if(!isset($_GET['id_noticia']) || $tipo_usu!="admin"){
+                if(!isset($_GET['id_noticia'])){
                     header("Location:../index.php");
                 }else{
                     $id_noticia=$_GET['id_noticia'];

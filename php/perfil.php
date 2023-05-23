@@ -114,6 +114,7 @@
                             <th>Score</th>
                             <th>Result</th>
                             <th>Mapa</th>
+                            <th>Ver</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,6 +131,7 @@
                                         echo '<td class="lose">LOSE</td>';
                                     }   
                                     echo '<td>'.$historial[$i]['mapa'].'</td>
+                                    <td><a href="match.php?id_partida='.$historial[$i]['id'].'">Ver</a></td>
                                     </tr>';
                                 }
                             }

@@ -166,6 +166,85 @@ nav input{
     color: yellow;
 }
 
+#contendor_noticias_ranking{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #131313;
+    border: 1px solid black;
+    margin: 1rem;
+}
+
+#contendor_noticias_ranking h2{
+    font-size: 2rem;
+}
+
+#ultimas_noticias{
+    padding: 1rem;
+}
+
+#ultimas_noticias a{
+    text-decoration: none;
+    color: white;
+}
+
+#ultimas_noticias a:hover{
+    color: yellow;
+}
+
+#mini_ranking{
+    overflow-x: auto;
+    padding: 1rem;
+}
+
+#mini_ranking h2{
+    text-align: center;
+}
+
+#mini_ranking table{
+    border-collapse: collapse;
+    color: white;
+}
+
+#mini_ranking tr{
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#mini_ranking td{
+    padding: 1rem;
+}
+
+#mini_ranking th{
+    color: #cfcfcf;
+    background-color: black;
+    padding: 1rem;
+}
+
+#mini_ranking tr>th:nth-child(1){
+    text-align: start;
+}
+#mini_ranking tr>th:nth-child(2){
+    text-align: start;
+}
+#mini_ranking tr>th:nth-child(6){
+    text-align: end;
+}
+#mini_ranking tr>td:nth-child(6){
+    text-align: end;
+}
+#mini_ranking tr>td:nth-child(3){
+    text-align: center;
+}
+#mini_ranking tr>td:nth-child(4){
+    text-align: center;
+}
+#mini_ranking tr>td:nth-child(5){
+    text-align: center;
+}
+#mini_ranking tbody>tr:hover{
+    background-color: #272727;
+}
+
 /* CSS PARA PLAY */
 #play{
     text-align: center;
@@ -483,6 +562,7 @@ nav input{
     padding: 1rem;
     background-color: #1e1e1e;
     border: 1px solid black;
+    overflow-x: auto;
 }
 
 #historial_jugador table{
@@ -516,6 +596,10 @@ nav input{
 }
 
 /* CSS PARA EL LEADERBOARD */
+#leaderboard{
+    overflow-x: auto;
+}
+
 #leaderboard table{
     border-collapse: collapse;
     color: white;

@@ -138,6 +138,35 @@
         return $datos;
     }
 
+    //FUNCION PARA OBTENER LA CLASIFICACION GLOBAL DE LOS JUGADORES
+    function obtener_top10(){
+        $con=conectarServidor();
+
+        $consulta = "SELECT id, nick, mmr, 
+                    (select count(*) from usuario where id <> 0 and (mmr > u.mmr or (mmr = u.mmr and id <= u.id))) as posicion 
+                    from usuario u 
+                    where id <> 0 and estado=1
+                    order by mmr desc, id asc
+                    LIMIT 10";
+
+        $buscar=$con->query($consulta);
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['nick']=$fila_buscar['nick'];
+                $datos[$i]['mmr']=$fila_buscar['mmr'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
     //FUNCION PARA OBTENER EL RANK DE UN JUGADOR DENTRO DE LA CLASIFICACION GLOBAL
     function obtener_rank_jugador($id){
         $con = conectarServidor();
@@ -589,6 +618,29 @@
     function todas_noticias(){
         $con=conectarServidor();
         $buscar=$con->query("SELECT * from noticia");
+
+        if($buscar->num_rows>0){
+            $i=0;
+            while($fila_buscar=$buscar->fetch_array(MYSQLI_ASSOC)){
+                $datos[$i]['id']=$fila_buscar['id'];
+                $datos[$i]['titulo']=$fila_buscar['titulo'];
+                $datos[$i]['texto']=$fila_buscar['texto'];
+                $datos[$i]['fecha']=$fila_buscar['fecha'];
+                $datos[$i]['foto']=$fila_buscar['foto'];
+                $i++;
+            }
+        }else{
+            $datos=null;
+        }
+
+        $con->close();
+        return $datos;
+    }
+
+    // OBTENER ULTIMAS NOTICIAS
+    function ultimas_noticias(){
+        $con=conectarServidor();
+        $buscar=$con->query("SELECT * from noticia order by fecha desc limit 5");
 
         if($buscar->num_rows>0){
             $i=0;
