@@ -253,10 +253,37 @@ nav input{
     background-color: #131313;
     border: 1px solid black;
     margin: 1rem;
+    padding: 1rem;
 }
 
 #seccion_weapons h2{
     font-size: 2rem;
+}
+
+#contenedor_weapons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#contenedor_weapons table{
+    border-collapse: collapse;
+    width: 33%;
+}
+
+#contenedor_weapons tr{
+    border: 1px solid #cfcfcf;
+}
+
+#contenedor_weapons td{
+    padding: 1rem;
+}
+
+#contenedor_weapons th{
+    color: #cfcfcf;
+    background-color: black;
+    padding: 1rem;
+    font-size: 1.5rem;
 }
 
 /* CSS PARA PLAY */
