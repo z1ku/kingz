@@ -124,7 +124,7 @@
                                     echo '<div class="partido_player">
                                     <img src="../img/jugador/'.$foto_jugador.'" alt="">
                                     <div>
-                                        <span class="player_nombre">'.$jugadores[$i]["nick"].'</span>
+                                        <span class="player_nombre"><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></span>
                                         <span>MMR: '.$jugadores[$i]["mmr"].'</span>
                                     </div>
                                     </div>';
@@ -149,7 +149,7 @@
                                     echo '<div class="partido_player">
                                     <img src="../img/jugador/'.$foto_jugador.'" alt="">
                                     <div>
-                                        <span class="player_nombre">'.$jugadores[$i]["nick"].'</span>
+                                        <span class="player_nombre"><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></span>
                                         <span>MMR: '.$jugadores[$i]["mmr"].'</span>
                                     </div>
                                     </div>';
