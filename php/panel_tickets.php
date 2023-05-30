@@ -61,65 +61,67 @@
                     </form>
                 </div>
             </div>
-            <?php
-                if($tipo_usu=="admin"){
+            <div class="contenedorTabla">
+                <?php
+                    if($tipo_usu=="admin"){
 
-                    if(isset($_POST['buscar_ticket'])){
-                        $numero=$_POST['numero'];
+                        if(isset($_POST['buscar_ticket'])){
+                            $numero=$_POST['numero'];
 
-                        $tickets=buscar_ticket_por_id($numero);
-                    }else if(isset($_POST['ver_cerradas'])){
-                        $tickets=todos_tickets_cerrados();
-                    }else if(isset($_POST['ver_abiertas'])){
-                        $tickets=todos_tickets_abiertos();
-                    }else{
-                        $tickets=todos_tickets_abiertos();
-                    }
-
-                    echo '<table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Asunto</th>
-                            <th>Estado</th>
-                            <th>Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                    if($tickets!=null){
-                        for($i=0;$i<count($tickets);$i++){
-                            $fecha_formateada=date("d-m-Y",strtotime($tickets[$i]['fecha']));
-
-                            echo '<tr>
-                                <td><a href="ticket.php?id_ticket='.$tickets[$i]['id'].'">'.$tickets[$i]['id'].'</a></td>
-                                <td>'.$fecha_formateada.'</td>
-                                <td>'.$tickets[$i]['asunto'].'</td>';
-                            if($tickets[$i]['estado']==0){
-                                echo '<td>
-                                    <form action="cerrar_ticket.php" method="post">
-                                        <input type="hidden" name="id_ticket" value="'.$tickets[$i]['id'].'">
-                                        <input type="submit" name="cerrar" class="btn_desactivar" value="Cerrar">
-                                    </form>
-                                </td>';
-                            }else{
-                                echo '<td>
-                                    <form action="cerrar_ticket.php" method="post">
-                                        <input type="hidden" name="id_ticket" value="'.$tickets[$i]['id'].'">
-                                        <input type="submit" name="abrir" class="btn_activar" value="Abrir">
-                                    </form>
-                                </td>';
-                            }
-                            echo '<td><a href="ver_perfil.php?id_player='.$tickets[$i]['id_usuario'].'">'.$tickets[$i]['nick'].'</a></td>
-                            </tr>';
+                            $tickets=buscar_ticket_por_id($numero);
+                        }else if(isset($_POST['ver_cerradas'])){
+                            $tickets=todos_tickets_cerrados();
+                        }else if(isset($_POST['ver_abiertas'])){
+                            $tickets=todos_tickets_abiertos();
+                        }else{
+                            $tickets=todos_tickets_abiertos();
                         }
+
+                        echo '<table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Asunto</th>
+                                <th>Estado</th>
+                                <th>Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        if($tickets!=null){
+                            for($i=0;$i<count($tickets);$i++){
+                                $fecha_formateada=date("d-m-Y",strtotime($tickets[$i]['fecha']));
+
+                                echo '<tr>
+                                    <td><a href="ticket.php?id_ticket='.$tickets[$i]['id'].'">'.$tickets[$i]['id'].'</a></td>
+                                    <td>'.$fecha_formateada.'</td>
+                                    <td>'.$tickets[$i]['asunto'].'</td>';
+                                if($tickets[$i]['estado']==0){
+                                    echo '<td>
+                                        <form action="cerrar_ticket.php" method="post">
+                                            <input type="hidden" name="id_ticket" value="'.$tickets[$i]['id'].'">
+                                            <input type="submit" name="cerrar" class="btn_desactivar" value="Cerrar">
+                                        </form>
+                                    </td>';
+                                }else{
+                                    echo '<td>
+                                        <form action="cerrar_ticket.php" method="post">
+                                            <input type="hidden" name="id_ticket" value="'.$tickets[$i]['id'].'">
+                                            <input type="submit" name="abrir" class="btn_activar" value="Abrir">
+                                        </form>
+                                    </td>';
+                                }
+                                echo '<td><a href="ver_perfil.php?id_player='.$tickets[$i]['id_usuario'].'">'.$tickets[$i]['nick'].'</a></td>
+                                </tr>';
+                            }
+                        }
+                        echo '</tbody>
+                        </table>';
+                    }else{
+                        header("Location:../index.php");
                     }
-                    echo '</tbody>
-                    </table>';
-                }else{
-                    header("Location:../index.php");
-                }
-            ?>
+                ?>
+            </div>
         </section>
     </main>
     <?php

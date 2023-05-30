@@ -61,47 +61,49 @@
                     </form>
                 </div>
             </div>
-            <?php
-                if($tipo_usu=="admin"){
+            <div class="contenedorTabla">
+                <?php
+                    if($tipo_usu=="admin"){
 
-                    if(isset($_POST['buscar_partida'])){
-                        $numero=$_POST['numero'];
+                        if(isset($_POST['buscar_partida'])){
+                            $numero=$_POST['numero'];
 
-                        $partidas=buscar_partida_por_id($numero);
-                    }else if(isset($_POST['ver_cerradas'])){
-                        $partidas=todas_partidas_cerradas();
-                    }else if(isset($_POST['ver_abiertas'])){
-                        $partidas=todas_partidas_abiertas();
-                    }else{
-                        $partidas=todas_partidas_abiertas();
-                    }
-
-                    echo '<table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                    if($partidas!=null){
-                        for($i=0;$i<count($partidas);$i++){
-                            $fecha_formateada=date("d-m-Y",strtotime($partidas[$i]['fecha']));
-
-                            echo '<tr>
-                                <td><a href="match.php?id_partida='.$partidas[$i]['id'].'">'.$partidas[$i]['id'].'</a></td>
-                                <td>'.$fecha_formateada.'</td>
-                                <td>'.$partidas[$i]['resultado_a'].'/'.$partidas[$i]['resultado_b'].'</td>
-                            </tr>';
+                            $partidas=buscar_partida_por_id($numero);
+                        }else if(isset($_POST['ver_cerradas'])){
+                            $partidas=todas_partidas_cerradas();
+                        }else if(isset($_POST['ver_abiertas'])){
+                            $partidas=todas_partidas_abiertas();
+                        }else{
+                            $partidas=todas_partidas_abiertas();
                         }
+
+                        echo '<table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        if($partidas!=null){
+                            for($i=0;$i<count($partidas);$i++){
+                                $fecha_formateada=date("d-m-Y",strtotime($partidas[$i]['fecha']));
+
+                                echo '<tr>
+                                    <td><a href="match.php?id_partida='.$partidas[$i]['id'].'">'.$partidas[$i]['id'].'</a></td>
+                                    <td>'.$fecha_formateada.'</td>
+                                    <td>'.$partidas[$i]['resultado_a'].'/'.$partidas[$i]['resultado_b'].'</td>
+                                </tr>';
+                            }
+                        }
+                        echo '</tbody>
+                        </table>';
+                    }else{
+                        header("Location:../index.php");
                     }
-                    echo '</tbody>
-                    </table>';
-                }else{
-                    header("Location:../index.php");
-                }
-            ?>
+                ?>
+            </div>
         </section>
     </main>
     <?php

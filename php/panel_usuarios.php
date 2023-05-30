@@ -53,55 +53,57 @@
                     <a href="panel_usuarios.php">Reset</a>
                 </form>
             </div>
-            <?php
-                if($tipo_usu=="admin"){
+            <div class="contenedorTabla">
+                <?php
+                    if($tipo_usu=="admin"){
 
-                    if(isset($_POST['buscar_usuario'])){
-                        $cadena=$_POST['cadena'];
+                        if(isset($_POST['buscar_usuario'])){
+                            $cadena=$_POST['cadena'];
 
-                        $usuarios=buscar_usuario_por_nombre($cadena);
-                    }else{
-                        $usuarios=todos_usuarios();
-                    }
-
-                    echo '<table>
-                    <thead>
-                        <tr>
-                            <th>Nick</th>
-                            <th>Correo</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                    if($usuarios!=null){
-                        for($i=0;$i<count($usuarios);$i++){
-                            echo '<tr>
-                                <td><a href="ver_perfil.php?id_player='.$usuarios[$i]['id'].'">'.$usuarios[$i]['nick'].'</a></td>
-                                <td>'.$usuarios[$i]['correo'].'</td>';
-                            if($usuarios[$i]['estado']==1){
-                                echo '<td>
-                                    <form action="activar_usuario.php" method="post">
-                                        <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
-                                        <input type="submit" name="desactivar" class="btn_desactivar" value="Desactivar">
-                                    </form>
-                                </td>';
-                            }else{
-                                echo '<td>
-                                    <form action="activar_usuario.php" method="post">
-                                        <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
-                                        <input type="submit" name="activar" class="btn_activar" value="Activar">
-                                    </form>
-                                </td>';
-                            }
-                            echo '</tr>';
+                            $usuarios=buscar_usuario_por_nombre($cadena);
+                        }else{
+                            $usuarios=todos_usuarios();
                         }
+
+                        echo '<table>
+                        <thead>
+                            <tr>
+                                <th>Nick</th>
+                                <th>Correo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        if($usuarios!=null){
+                            for($i=0;$i<count($usuarios);$i++){
+                                echo '<tr>
+                                    <td><a href="ver_perfil.php?id_player='.$usuarios[$i]['id'].'">'.$usuarios[$i]['nick'].'</a></td>
+                                    <td>'.$usuarios[$i]['correo'].'</td>';
+                                if($usuarios[$i]['estado']==1){
+                                    echo '<td>
+                                        <form action="activar_usuario.php" method="post">
+                                            <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
+                                            <input type="submit" name="desactivar" class="btn_desactivar" value="Desactivar">
+                                        </form>
+                                    </td>';
+                                }else{
+                                    echo '<td>
+                                        <form action="activar_usuario.php" method="post">
+                                            <input type="hidden" name="id_usuario" value="'.$usuarios[$i]['id'].'">
+                                            <input type="submit" name="activar" class="btn_activar" value="Activar">
+                                        </form>
+                                    </td>';
+                                }
+                                echo '</tr>';
+                            }
+                        }
+                        echo '</tbody>
+                        </table>';
+                    }else{
+                        header("Location:../index.php");
                     }
-                    echo '</tbody>
-                    </table>';
-                }else{
-                    header("Location:../index.php");
-                }
-            ?>
+                ?>
+            </div>
         </section>
     </main>
     <?php

@@ -51,56 +51,58 @@
                     <input type="submit" name="nuevo_mapa" value="Nuevo">
                 </form>
             </div>
-            <?php
-                if($tipo_usu=="admin"){
+            <div class="contenedorTabla">
+                <?php
+                    if($tipo_usu=="admin"){
 
-                    $mapas=todos_mapas();
+                        $mapas=todos_mapas();
 
-                    echo '<table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Foto</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                    if($mapas!=null){
-                        for($i=0;$i<count($mapas);$i++){
-                            echo '<tr>
-                                <td>'.$mapas[$i]['nombre'].'</td>';
-                            if($mapas[$i]['estado']==0){
-                                echo '<td>
-                                    <form action="activar_mapa.php" method="post">
+                        echo '<table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Foto</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        if($mapas!=null){
+                            for($i=0;$i<count($mapas);$i++){
+                                echo '<tr>
+                                    <td>'.$mapas[$i]['nombre'].'</td>';
+                                if($mapas[$i]['estado']==0){
+                                    echo '<td>
+                                        <form action="activar_mapa.php" method="post">
+                                            <input type="hidden" name="id_mapa" value="'.$mapas[$i]['id'].'">
+                                            <input type="submit" name="activar" class="btn_desactivar" value="Activar">
+                                        </form>
+                                    </td>';
+                                }else{
+                                    echo '<td>
+                                        <form action="activar_mapa.php" method="post">
+                                            <input type="hidden" name="id_mapa" value="'.$mapas[$i]['id'].'">
+                                            <input type="submit" name="desactivar" class="btn_activar" value="Desactivar">
+                                        </form>
+                                    </td>';
+                                }
+                                echo '<td><img src="../img/mapa/'.$mapas[$i]['foto'].'" alt=""></td>
+                                <td>
+                                    <form action="editar_mapa.php" method="post">
                                         <input type="hidden" name="id_mapa" value="'.$mapas[$i]['id'].'">
-                                        <input type="submit" name="activar" class="btn_desactivar" value="Activar">
+                                        <input type="submit" name="editar_mapa" class="btn_editar" value="Editar">
                                     </form>
-                                </td>';
-                            }else{
-                                echo '<td>
-                                    <form action="activar_mapa.php" method="post">
-                                        <input type="hidden" name="id_mapa" value="'.$mapas[$i]['id'].'">
-                                        <input type="submit" name="desactivar" class="btn_activar" value="Desactivar">
-                                    </form>
-                                </td>';
+                                </td>
+                                </tr>';
                             }
-                            echo '<td><img src="../img/mapa/'.$mapas[$i]['foto'].'" alt=""></td>
-                            <td>
-                                <form action="editar_mapa.php" method="post">
-                                    <input type="hidden" name="id_mapa" value="'.$mapas[$i]['id'].'">
-                                    <input type="submit" name="editar_mapa" class="btn_editar" value="Editar">
-                                </form>
-                            </td>
-                            </tr>';
                         }
+                        echo '</tbody>
+                        </table>';
+                    }else{
+                        header("Location:../index.php");
                     }
-                    echo '</tbody>
-                    </table>';
-                }else{
-                    header("Location:../index.php");
-                }
-            ?>
+                ?>
+            </div>
         </section>
     </main>
     <?php

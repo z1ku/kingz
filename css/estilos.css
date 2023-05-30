@@ -357,6 +357,7 @@ nav input{
 
 .contenedor_buscar_nuevo form{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .contenedor_buscar_nuevo a{
@@ -369,6 +370,15 @@ nav input{
 
 .contenedor_buscar_nuevo a:hover{
     background-color: rgb(49, 49, 49);
+}
+
+.contenedor_abiertas_cerradas{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contenedorTabla{
+    overflow-x: auto;
 }
 
 /* CSS PARA FORMS */
@@ -745,8 +755,6 @@ nav input{
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    width: 25%;
     margin: 1rem auto;
 }
 
@@ -770,6 +778,7 @@ nav input{
 #seccionUsuarios table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #seccionUsuarios tr{
@@ -793,13 +802,10 @@ nav input{
 }
 
 /* CSS PARA PANEL PARTIDAS */
-.contenedor_abiertas_cerradas{
-    display: flex;
-}
-
 #seccionPartidas table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #seccionPartidas tr{
@@ -826,6 +832,7 @@ nav input{
 #seccionTickets table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #seccionTickets tr{
@@ -894,6 +901,7 @@ nav input{
 #seccionMapas table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #seccionMapas tr{
@@ -920,6 +928,7 @@ nav input{
 #seccionNoticias table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #seccionNoticias tr{
@@ -1140,6 +1149,11 @@ footer i{
     }
     #bienvenida article p{
         text-align: center;
+    }
+
+    /* FORMS */
+    .formkingz{
+        width: 100%;
     }
     
     /* SALA PARTIDA */

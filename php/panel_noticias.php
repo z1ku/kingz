@@ -51,41 +51,43 @@
                     <input type="submit" name="nueva_noticia" value="Nueva">
                 </form>
             </div>
-            <?php
-                if($tipo_usu=="admin"){
+            <div class="contenedorTabla">
+                <?php
+                    if($tipo_usu=="admin"){
 
-                    $noticias=todas_noticias();
+                        $noticias=todas_noticias();
 
-                    echo '<table>
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Fecha</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                    if($noticias!=null){
-                        for($i=0;$i<count($noticias);$i++){
-                            $fecha_formateada=date("d-m-Y",strtotime($noticias[$i]['fecha']));
-                            echo '<tr>
-                                <td><a href="noticia.php?id_noticia='.$noticias[$i]['id'].'">'.$noticias[$i]['titulo'].'</a></td>
-                                <td>'.$fecha_formateada.'</td>
-                                <td>
-                                    <form action="editar_noticia.php" method="post">
-                                        <input type="hidden" name="id_noticia" value="'.$noticias[$i]['id'].'">
-                                        <input type="submit" name="editar_noticia" class="btn_editar" value="Editar">
-                                    </form>
-                                </td>
-                            </tr>';
+                        echo '<table>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Fecha</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        if($noticias!=null){
+                            for($i=0;$i<count($noticias);$i++){
+                                $fecha_formateada=date("d-m-Y",strtotime($noticias[$i]['fecha']));
+                                echo '<tr>
+                                    <td><a href="noticia.php?id_noticia='.$noticias[$i]['id'].'">'.$noticias[$i]['titulo'].'</a></td>
+                                    <td>'.$fecha_formateada.'</td>
+                                    <td>
+                                        <form action="editar_noticia.php" method="post">
+                                            <input type="hidden" name="id_noticia" value="'.$noticias[$i]['id'].'">
+                                            <input type="submit" name="editar_noticia" class="btn_editar" value="Editar">
+                                        </form>
+                                    </td>
+                                </tr>';
+                            }
                         }
+                        echo '</tbody>
+                        </table>';
+                    }else{
+                        header("Location:../index.php");
                     }
-                    echo '</tbody>
-                    </table>';
-                }else{
-                    header("Location:../index.php");
-                }
-            ?>
+                ?>
+            </div>
         </section>
     </main>
     <?php
