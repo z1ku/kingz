@@ -41,6 +41,10 @@ textarea {
     color: white;
 }
 
+.btn_activar:hover{
+    background-color: #49be64;
+}
+
 .btn_desactivar{
     background-color: #a72828;
     padding: 0.5rem 1rem;
@@ -50,12 +54,20 @@ textarea {
     color: white;
 }
 
+.btn_desactivar:hover{
+    background-color: #bb4545;
+}
+
 .btn_editar{
     background-color: yellow;
     padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 1rem;
     margin: 0.5rem;
+}
+
+.btn_editar:hover{
+    background-color: rgb(243, 243, 118);
 }
 
 table a{
@@ -98,6 +110,10 @@ header input[type=submit]{
     margin: 0.5rem;
 }
 
+header input[type=submit]:hover{
+    background-color: rgb(243, 243, 118);
+}
+
 nav{
     display: flex;
     align-items: center;
@@ -110,6 +126,10 @@ nav a{
     text-decoration: none;
     font-size: 1.5rem;
     margin: 1.5rem 8rem;
+}
+
+nav a:hover{
+    color: yellow;
 }
 
 nav input{
@@ -331,7 +351,7 @@ nav input{
 }
 
 .contenedor_buscar_nuevo input[type=submit]:hover{
-    background-color: rgb(253, 253, 85);
+    background-color: rgb(243, 243, 118);
 }
 
 .contenedor_buscar_nuevo form{
@@ -384,6 +404,10 @@ nav input{
     font-family: "Jeju";
     font-size: 1rem;
     margin-top: 1rem;
+}
+
+.formkingz input[type=submit]:hover{
+    background-color: rgb(243, 243, 118);
 }
 
 /* CSS PARA LA PÁGINA DE PARTIDO */
@@ -544,11 +568,19 @@ nav input{
     font-size: 1rem;
 }
 
+#btn_resultado:hover{
+    background-color: #49be64;
+}
+
 #btn_mensaje{
     background-color: yellow;
     padding: 0.5rem 1rem;
     font-family: "Jeju";
     font-size: 1rem;
+}
+
+#btn_mensaje:hover{
+    background-color: rgb(243, 243, 118);
 }
 
 /* CSS PARA LA PAGINA PERFIL DE JUGADOR */
@@ -577,6 +609,10 @@ nav input{
     font-family: "Jeju";
     font-size: 1rem;
     margin: 1rem 0;
+}
+
+#editar_perfil:hover{
+    background-color: rgb(243, 243, 118);
 }
 
 #jugador{
@@ -719,6 +755,10 @@ nav input{
     font-size: 1.5rem;
     margin: 0.5rem;
     width: 100%;
+}
+
+.nav_admin a:hover{
+    background-color: rgb(243, 243, 118);
 }
 
 /* CSS PARA PANEL USUARIOS */
