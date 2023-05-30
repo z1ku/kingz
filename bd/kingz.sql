@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2023 a las 21:57:57
+-- Tiempo de generación: 30-05-2023 a las 15:57:49
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -83,7 +83,10 @@ INSERT INTO `mensaje` (`id`, `texto`, `marca`, `id_usuario`, `id_partida`) VALUE
 (32, 'Amazing', 1683635454, 1, 4),
 (33, 'keeek', 1683636217, 1, 4),
 (34, 'Hola', 1683636498, 2, 4),
-(35, 'dawd', 1683638668, 2, 4);
+(35, 'dawd', 1683638668, 2, 4),
+(36, 'Hola', 1684249840, 1, 5),
+(37, 'Hola tu', 1684249847, 2, 5),
+(38, 'Hola', 1685371368, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -127,8 +130,12 @@ INSERT INTO `participa` (`id_usuario`, `id_partida`, `equipo`) VALUES
 (1, 2, 'A'),
 (1, 3, 'A'),
 (1, 4, 'A'),
+(1, 5, 'A'),
+(1, 6, 'A'),
 (2, 3, 'B'),
-(2, 4, 'B');
+(2, 4, 'B'),
+(2, 5, 'B'),
+(2, 6, 'B');
 
 -- --------------------------------------------------------
 
@@ -153,7 +160,9 @@ INSERT INTO `partida` (`id`, `resultado_a`, `resultado_b`, `fecha`, `estado`, `i
 (1, 13, 9, '2023-04-30', 1, 1),
 (2, 10, 13, '2023-04-29', 1, 8),
 (3, 13, 8, '2023-05-07', 1, 4),
-(4, 13, 9, '2023-05-07', 1, 7);
+(4, 13, 9, '2023-05-07', 1, 7),
+(5, 13, 5, '2023-05-16', 1, 2),
+(6, NULL, NULL, '2023-05-29', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -176,7 +185,7 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`id`, `fecha`, `asunto`, `texto`, `foto`, `estado`, `id_usuario`) VALUES
-(1, '2023-05-11', 'Prueba', 'probando', NULL, 0, 1),
+(1, '2023-05-11', 'Prueba', 'probando', NULL, 1, 1),
 (2, '2023-05-11', 'Prueba foto', 'Subiendo foto', '2.jpg', 0, 1);
 
 -- --------------------------------------------------------
@@ -203,8 +212,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
 (0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, 1, NULL, NULL),
-(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3020, 1, 0, 0),
-(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1080, 1, 0, 0),
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3040, 1, 1, 0),
+(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1060, 1, 0, 0),
 (3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 0);
 
 --
@@ -272,7 +281,7 @@ ALTER TABLE `mapa`
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `noticia`
@@ -284,7 +293,7 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ticket`
