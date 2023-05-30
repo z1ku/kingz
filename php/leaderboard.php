@@ -44,50 +44,52 @@
         }
     ?>
     <main>
-        <section id="leaderboard" class="seccion">
+        <section class="seccion">
             <h1>LEADERBOARD</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Posición</th>
-                        <th>Jugador</th>
-                        <th>Partidos</th>
-                        <th>Victorias</th>
-                        <th>Win%</th>
-                        <th>MMR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $jugadores=obtener_clasificacion();
+            <div id="leaderboard">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>Jugador</th>
+                            <th>Partidos</th>
+                            <th>Victorias</th>
+                            <th>Win%</th>
+                            <th>MMR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $jugadores=obtener_clasificacion();
 
-                        if($jugadores!=null){
-                            for($i=0;$i<count($jugadores);$i++){
-                                $rank=obtener_rank_jugador($jugadores[$i]['id']);
-                                $partidas_totales=partidas_totales($jugadores[$i]['id']);
-                                $partidas_ganadas=partidas_ganadas($jugadores[$i]['id']);
+                            if($jugadores!=null){
+                                for($i=0;$i<count($jugadores);$i++){
+                                    $rank=obtener_rank_jugador($jugadores[$i]['id']);
+                                    $partidas_totales=partidas_totales($jugadores[$i]['id']);
+                                    $partidas_ganadas=partidas_ganadas($jugadores[$i]['id']);
 
-                                if($partidas_totales>0){
-                                    $win_rate=($partidas_ganadas/$partidas_totales) * 100;
-                                }else{
-                                    $win_rate=0;
+                                    if($partidas_totales>0){
+                                        $win_rate=($partidas_ganadas/$partidas_totales) * 100;
+                                    }else{
+                                        $win_rate=0;
+                                    }
+                                    
+                                    $win_truncado = intval($win_rate);
+        
+                                    echo '<tr>
+                                        <td>'.$rank.'</td>
+                                        <td><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></td>
+                                        <td>'.$partidas_totales.'</td>
+                                        <td>'.$partidas_ganadas.'</td>
+                                        <td>'.$win_truncado.'%</td>
+                                        <td>'.$jugadores[$i]['mmr'].'</td>
+                                    </tr>';
                                 }
-                                
-                                $win_truncado = intval($win_rate);
-    
-                                echo '<tr>
-                                    <td>'.$rank.'</td>
-                                    <td><a href="ver_perfil.php?id_player='.$jugadores[$i]['id'].'">'.$jugadores[$i]['nick'].'</a></td>
-                                    <td>'.$partidas_totales.'</td>
-                                    <td>'.$partidas_ganadas.'</td>
-                                    <td>'.$win_truncado.'%</td>
-                                    <td>'.$jugadores[$i]['mmr'].'</td>
-                                </tr>';
                             }
-                        }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
     <?php

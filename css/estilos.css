@@ -278,6 +278,7 @@ nav input{
 
 #seccion_weapons h2{
     font-size: 2rem;
+    text-align: center;
 }
 
 #contenedor_weapons{
@@ -480,6 +481,7 @@ nav input{
 
 .equipo{
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 40%;
 }
@@ -515,6 +517,7 @@ nav input{
 .partido_player>div{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -662,11 +665,11 @@ nav input{
 }
 
 #historial_jugador td{
-    padding: 1rem 0;
+    padding: 1rem;
+    text-align: center;
 }
 
 #historial_jugador th{
-    text-align: start;
     color: #cfcfcf;
 }
 
@@ -690,6 +693,7 @@ nav input{
 #leaderboard table{
     border-collapse: collapse;
     color: white;
+    width: 100%;
 }
 
 #leaderboard tr{
@@ -949,10 +953,16 @@ footer{
     font-family: "Jeju";
 }
 
+footer>div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 footer a{
     text-decoration: none;
     color: white;
-    margin: 0rem 2rem;
+    margin: 2rem;
 }
 
 footer i{
@@ -1052,12 +1062,40 @@ footer i{
     header{
         justify-content: center;
     }
+
+    /* SALA PARTIDA */
+    #cuerpo_partido{
+        flex-direction: column;
+    }
+    #equipos{
+        width: 100%;
+    }
+    #chat_partido{
+        width: 80%;
+        margin: 1rem auto;
+    }
 }
 
 @media screen and (max-width: 800px){
     /* MENU */
     nav{
         justify-content: center;
+    }
+
+    /* GENERAL */
+    .seccion{
+        width: 100%;
+    }
+
+    /* PERFIL JUGADOR */
+    #jugador{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* FOOTER */
+    footer{
+        flex-direction: column;
     }
 }
 
@@ -1066,6 +1104,27 @@ footer i{
     #contenedor_weapons table{
         width: 100%;
         margin: 1rem;
+    }
+
+    /* SALA PARTIDA */
+    #cabecera_partido{
+        flex-direction: column;
+        height: fit-content;
+    }
+    #nombre_equipos{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    #cabecera_partido img{
+        width: 100%;
+    }
+    #equipos{
+        flex-direction: column;
+        align-items: center;
+    }
+    .equipo{
+        width: 80%;
     }
 }
 
@@ -1081,5 +1140,10 @@ footer i{
     }
     #bienvenida article p{
         text-align: center;
+    }
+    
+    /* SALA PARTIDA */
+    #chat_partido{
+        width: 100%;
     }
 }
