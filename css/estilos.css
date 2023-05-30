@@ -390,6 +390,7 @@ nav input{
 .formkingz>div{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
     margin-bottom: 2rem;
 }
@@ -1042,5 +1043,43 @@ footer i{
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+/* MEDIA QUERYS */
+@media screen and (max-width: 1000px){
+    /* MENU */
+    header{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 800px){
+    /* MENU */
+    nav{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 650px){
+    /* HOME */
+    #contenedor_weapons table{
+        width: 100%;
+        margin: 1rem;
+    }
+}
+
+@media screen and (max-width: 500px){
+    /* MENU */
+    nav a{
+        margin: 2rem;
+    }
+
+    /* HOME */
+    #bienvenida article{
+        width: 100%;
+    }
+    #bienvenida article p{
+        text-align: center;
     }
 }
