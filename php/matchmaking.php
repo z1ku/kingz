@@ -8,7 +8,8 @@
 
     $con=conectarServidor();
 
-    $LIMITE_JUGADORES=2;
+    //AJUSTAR JUGADORES PARA LA PARTIDA
+    $LIMITE_JUGADORES=4;
 
     // Obtener X jugadores que estén buscando partida
     $consulta="SELECT * from usuario where buscando=1 LIMIT $LIMITE_JUGADORES";
