@@ -1,0 +1,8 @@
+USUARIO - PASSWORD
+
+admin - admin
+z1ku - z1ku
+deeky - deeky
+xaxy - xaxy
+
+Todos los usuarios tienen la pw igual que el nick.

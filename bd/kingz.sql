@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2023 a las 15:57:49
+-- Tiempo de generación: 31-05-2023 a las 22:59:02
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -132,10 +132,26 @@ INSERT INTO `participa` (`id_usuario`, `id_partida`, `equipo`) VALUES
 (1, 4, 'A'),
 (1, 5, 'A'),
 (1, 6, 'A'),
+(1, 7, 'A'),
 (2, 3, 'B'),
 (2, 4, 'B'),
 (2, 5, 'B'),
-(2, 6, 'B');
+(2, 6, 'B'),
+(2, 7, 'B'),
+(2, 8, 'A'),
+(2, 10, 'A'),
+(3, 7, 'A'),
+(3, 10, 'B'),
+(4, 9, 'A'),
+(5, 8, 'B'),
+(6, 7, 'B'),
+(6, 8, 'A'),
+(6, 9, 'B'),
+(6, 10, 'A'),
+(7, 9, 'A'),
+(8, 9, 'B'),
+(9, 8, 'B'),
+(12, 10, 'B');
 
 -- --------------------------------------------------------
 
@@ -162,7 +178,11 @@ INSERT INTO `partida` (`id`, `resultado_a`, `resultado_b`, `fecha`, `estado`, `i
 (3, 13, 8, '2023-05-07', 1, 4),
 (4, 13, 9, '2023-05-07', 1, 7),
 (5, 13, 5, '2023-05-16', 1, 2),
-(6, NULL, NULL, '2023-05-29', 0, 4);
+(6, 13, 1, '2023-05-29', 1, 4),
+(7, 11, 13, '2023-05-31', 1, 4),
+(8, 13, 5, '2023-05-31', 1, 9),
+(9, 13, 5, '2023-05-31', 1, 1),
+(10, 13, 11, '2023-05-31', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -212,9 +232,18 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `correo`, `foto`, `mmr`, `estado`, `en_partida`, `buscando`) VALUES
 (0, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', NULL, NULL, NULL, 1, NULL, NULL),
-(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3040, 1, 1, 0),
-(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1060, 1, 0, 0),
-(3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1100, 1, 0, 0);
+(1, 'z1ku', 'dfec4e38c65ebe19a60a8a6e0511a7f6', 'z1ku1337@gmail.com', '1.jpg', 3040, 1, 0, 0),
+(2, 'xaxy', 'd3349b369d1ff01490bdb9760d4fcea8', NULL, NULL, 1100, 1, 0, 0),
+(3, 'deeky', '0650f453b5b1d2266da93e86cd39910a', NULL, NULL, 1060, 1, 0, 0),
+(4, 'Minilotis', 'c0d7b615587d5e8beccbe53cfbeec758', NULL, NULL, 1120, 1, 0, 0),
+(5, 'Quo', 'f6df00ed5f7988f3bef41c37c591eaad', NULL, NULL, 1080, 1, 0, 0),
+(6, 'Troles', 'a6a132e034066b49d8db41044f88f1cb', NULL, NULL, 1140, 1, 0, 0),
+(7, 'phakun', 'f994e68f36d6a963214387254a329095', NULL, NULL, 1120, 1, 0, 0),
+(8, 'Gravis', 'c914d522c9b236664266a8854cf1dd4d', NULL, NULL, 1080, 1, 0, 0),
+(9, 'bettis', '1f24af0ca6483a85c94682bf49f4dc4e', NULL, NULL, 1080, 1, 0, 0),
+(10, 'Cloud', 'fd05a14c76b378d37dfb030a9a8eb7c1', NULL, NULL, 1100, 1, 0, 0),
+(11, 'Kiles', '14935706a46bec415fb7c87c2bdcd4f1', NULL, NULL, 1100, 1, 0, 0),
+(12, 'eGo', '67783e01d28f32eee6cb0c764b519e87', NULL, NULL, 1080, 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -293,7 +322,7 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `ticket`
@@ -305,7 +334,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
