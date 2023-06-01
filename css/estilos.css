@@ -974,6 +974,10 @@ footer a{
     margin: 2rem;
 }
 
+footer a:hover{
+    color: yellow;
+}
+
 footer i{
     font-size: 1.5rem;
 }
