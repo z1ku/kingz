@@ -183,7 +183,7 @@
                                 }
 
                                 $con->close();
-                                header("Location:match.php?id_partida=$id_partida");
+                                // header("Location:match.php?id_partida=$id_partida");
                             }
                             
                             // IMPRIMIR LOS MENSAJES POR PHP
